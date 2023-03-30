@@ -141,6 +141,23 @@
               <th>Path Name</th>
               <th>File Name</th>
             </tr>
+            {% for invoice in invoiceheaders %}
+            <tr>
+                  <td>{{invoice['customername']}}</td>
+                  <td>{{invoice['invoicenumber']}}</td>
+                  <td>{{invoice['phonenumber']}}</td>
+                  <td>{{invoice['datein']}}</td>
+                  <td>{{invoice['datepaid']}}</td>
+                  <td>{{invoice['makemodel']}}</td>
+                  <td>{{invoice['regno']}}</td>
+                  <td>{{invoice['mileage']}}</td>
+                  <td>{{invoice['summaryprice']}}</td>
+                  <td>{{invoice['summarytotal']}}</td>
+                  <td>{{invoice['id']}}</td>
+                  <td>{{invoice['pathname']}}</td>
+                  <td>{{invoice['filename']}}</td>
+            </tr>
+            {% endfor%}
           </table>
         </td>
       </tr>
