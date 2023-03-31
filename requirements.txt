@@ -1,2 +1,2 @@
 Flask
-gunicorn - used to build from replit
+gunicorn
