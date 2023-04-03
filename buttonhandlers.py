@@ -1,5 +1,4 @@
-def displayMessage(message):
-    messageBox.insert(INSERT,message + "\r")
+from logic import viewInvoiceHeaders
 
 def openSpreadsheet():
     selectedItem = tree.selection()[0]
@@ -47,20 +46,20 @@ def deleteSelectedInvoice():
 
 
 
-def clearFilters():
-    customerName.delete(0,END)
-    registrationNumber.delete(0,END)
-    dateIn.delete(0,END)
-    makeModel.delete(0,END)
-    phoneNumber.delete(0,END)
-    dateStart.delete(0,END)
-    dateStart.insert(0,"")
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,"")
-    timeScope.set(1)
-    buttonDate.config(text='In')
-    flgEstimates.set(0)
-    chkInvoices.select()
+def clearFilters(data):
+    data['customerName']=""
+    data['registrationNumber']=""
+    data['dateIn']=""
+    data['makeModel']=""
+    data['phoneNumber']=""
+    data['dateStart']=""
+    data['dateStart']=""
+    data['dateEnd']=""
+    data['dateEnd']=""
+    #timeScope.set(1)
+    #buttonDate.config(text='In')
+    data['estimates']=0
+    data['invoices']=1
 
 def openNewInvoice():
     invoiceType=cmbInvoiceType.get()

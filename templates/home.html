@@ -147,9 +147,11 @@
               <th>Path Name</th>
               <th>File Name</th>
             </tr>
-            {% for invoice in invoiceheaders %}
-              {% include 'invoicelist.html' %}
-            {% endfor%}
+            <div class="items">
+              {% for invoice in invoiceheaders %}
+                {% include 'invoicelist.html' %}
+              {% endfor%}
+            </div>
           </table>
         </td>
       </tr>

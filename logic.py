@@ -1,12 +1,9 @@
 from database import getInvoiceHeaders, deleteInvoice, getLastUpdate
 
-def displayMessage(message):
-    messageBox.insert(INSERT,message + "\r")
-
 
 def viewInvoiceHeaders(data):
 
-    searchString = buildSearchString()
+    searchString = buildSearchString(data)
     #print("******   searchString   *****")
     #print(searchString)
     invoiceHeaders = getInvoiceHeaders(searchString)    
@@ -28,28 +25,21 @@ def totalValue(item=""):
     invoiceTotalIncVAT.delete(0,END)
     invoiceTotalIncVAT.insert(0,totalString)
     
-
-
 def getDateLastUpdated():
     dateLastUpdated.delete(0,END)
     displayDate=guessDateFormat(getLastUpdate())
     #print (displayDate.strftime("%d/%m/%Y"))
     dateLastUpdated.insert(0,displayDate.strftime("%d/%m/%Y"))
-
-
-
-
-
     
-def buildSearchString():
+def buildSearchString(data):
     searchString=""
     #print("2nd one" + searchString=="")
 
-    customerNameVal = customerName.get()
-    registrationNumberVal = registrationNumber.get()
-    dateInVal = dateIn.get()
-    makeModelVal = makeModel.get()
-    phoneNumberVal = phoneNumber.get()
+    customerNameVal = data['customerName.get()
+    registrationNumberVal = data['registrationNumber.get()
+    dateInVal = data['dateIn.get()
+    makeModelVal = data['makeModel.get()
+    phoneNumberVal = data['phoneNumber.get()
     
     if customerNameVal != "":
         searchString = addSearchCriterionToString(searchString, "CustomerName", str(customerNameVal))
