@@ -32,20 +32,20 @@ def getInvoiceHeaders(searchString):
         + str(searchString) + " ORDER BY DateInJulian "))
     return result
 
-def dictify(funcName, searchString, jsonifyFlag):
-  match funcName:
-    case "getInvoiceHeaders":
-      result = getInvoiceHeaders("searchString")
-    case "getInvoiceHeader":
-      result = getInvoiceHeader(searchString)
-  dictifiedResult = []
-  for row in result.all():
-    print(result)
-    dictifiedResult.append(dict(row))
-  if jsonifyFlag=="Y":
-    return jsonify(dictifiedResult)
-  else:
-    return dictifiedResult
+#def dictify(funcName, searchString, jsonifyFlag):
+#  match funcName:
+#    case "getInvoiceHeaders":
+#      result = getInvoiceHeaders("searchString")
+#    case "getInvoiceHeader":
+#      result = getInvoiceHeader(searchString)
+#  dictifiedResult = []
+#  for row in result.all():
+#    print(result)
+#    dictifiedResult.append(dict(row))
+#  if jsonifyFlag=="Y":
+#    return jsonify(dictifiedResult)
+#  else:
+#    return dictifiedResult
 
 
 def getInvoiceHeader(selection):
