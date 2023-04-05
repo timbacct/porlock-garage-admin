@@ -32,7 +32,6 @@ def getInvoiceHeaders(searchString):
         + str(searchString) + " ORDER BY DateInJulian "))
     return result
 
-
 def dictify(funcName, searchString, jsonifyFlag):
   match funcName:
     case "getInvoiceHeaders":
