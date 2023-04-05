@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine, text
 from flask import jsonify
+import os
 
-db_connection_string = "mysql+pymysql://pfhb29t06w6px7ueuirc:pscale_pw_CUUpIyII7FSKkeebXGgdMhGGrdGZLMrmGNuNHQmXaZB@aws.connect.psdb.cloud/centralgarageadmin?charset=utf8mb4"
+db_connection_string = os.environ['DB_CONNECTION_STRING']
 
 engine = create_engine(db_connection_string,
                        connect_args={"ssl": {
