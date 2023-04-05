@@ -22,10 +22,12 @@ engine = create_engine(db_connection_string,
 def getInvoiceHeaders(searchString):
   #print("******   searchString   *****")
   #print(searchString)
+  if searchString=="":
+    searchString="WHERE CustomerName LIKE '%Baker%'"
   with engine.connect() as conn:
     result = conn.execute(
       text(
-        "SELECT CustomerName, InvoiceNumber, PhoneNumber, DateIn, PaidDate, MakeModel, RegistrationNumber, Mileage, format('£%.2f',SummaryPrice), format('£%.2f',SummaryTotal),ID, PathName, FileName FROM InvoiceHeader "
+        "SELECT CustomerName, InvoiceNumber, PhoneNumber, DateIn, PaidDate, MakeModel, RegistrationNumber, Mileage, SummaryPrice, SummaryTotal,ID, PathName, FileName FROM InvoiceHeader "
         + str(searchString) + " ORDER BY DateInJulian "))
     return result
 
@@ -33,11 +35,12 @@ def getInvoiceHeaders(searchString):
 def dictify(funcName, searchString, jsonifyFlag):
   match funcName:
     case "getInvoiceHeaders":
-      result = getInvoiceHeaders("")
+      result = getInvoiceHeaders("searchString")
     case "getInvoiceHeader":
       result = getInvoiceHeader(searchString)
   dictifiedResult = []
   for row in result.all():
+    print(result)
     dictifiedResult.append(dict(row))
   if jsonifyFlag=="Y":
     return jsonify(dictifiedResult)

@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from database import dictify
-from buttonhandlers from *
+from buttonhandlers import *
 from logic import *
 
 app = Flask(__name__)
@@ -29,23 +29,29 @@ INVOICEHEADER = [{
   'phonenumber': '01643 123443'
 }]
 
+#@app.route("/")
+#def homepage():
+#  return render_template('home.html')
 
-@app.route("/", methods=['post'])
+
+@app.route("/", methods=['GET'])
 def homepage():
-  data = request.form
-  invoiceHeaders = viewInvoiceHeaders(data)
-  return render_template('home.html', invoiceheaders=invoiceHeaders)
+  try:
+    data = request.args
+    searchString = buildSearchString(data)
+    invoiceHeaders = getInvoiceHeaders(searchString)
+    return render_template('home.html', searchstring=searchString, data=data, invoiceheaders=invoiceHeaders)
+  except:
+    data = "No search criteria"
+    return render_template('home.html', data=data)
 
 
-@app.route("/invoiceheaders")
-def exportInvoiceHeaders():
-  return dictify("getInvoiceHeaders", "", "Y")
 
 
 @app.route("/invoiceheader/<ID>")
 def loadInvoiceHeader(ID):
   #invoiceHeader = dictify("getInvoiceHeader", ID, "N")
-  return render_template('invoiceheader.html', invoiceheader =INVOICEHEADER[0])
+  return render_template('invoiceheader.html', invoiceheader=INVOICEHEADER[0])
 
 
 if __name__ == "__main__":

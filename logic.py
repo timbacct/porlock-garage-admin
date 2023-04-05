@@ -1,13 +1,17 @@
-from database import getInvoiceHeaders, deleteInvoice, getLastUpdate
+from database import getInvoiceHeaders, deleteInvoice, getLastUpdate, dictify
 
 
 def viewInvoiceHeaders(data):
 
-    searchString = buildSearchString(data)
-    #print("******   searchString   *****")
-    #print(searchString)
-    invoiceHeaders = getInvoiceHeaders(searchString)    
-    totalValue()
+    if data==[]:
+      searchString = ""
+    else:
+      searchString = buildSearchString(data)
+      invoiceHeaders = getInvoiceHeaders(searchString)
+    print("******   searchString   *****")
+    print(searchString)
+    
+    return searchString
 
 def totalValue(item=""):
     total=0
@@ -30,16 +34,18 @@ def getDateLastUpdated():
     displayDate=guessDateFormat(getLastUpdate())
     #print (displayDate.strftime("%d/%m/%Y"))
     dateLastUpdated.insert(0,displayDate.strftime("%d/%m/%Y"))
-    
+
+
+
 def buildSearchString(data):
     searchString=""
     #print("2nd one" + searchString=="")
 
-    customerNameVal = data['customerName.get()
-    registrationNumberVal = data['registrationNumber.get()
-    dateInVal = data['dateIn.get()
-    makeModelVal = data['makeModel.get()
-    phoneNumberVal = data['phoneNumber.get()
+    customerNameVal = data['customername']
+    registrationNumberVal = data['registrationnumber']
+    dateInVal = data['datein']
+    makeModelVal = data['makemodel']
+    phoneNumberVal = data['phonenumber']
     
     if customerNameVal != "":
         searchString = addSearchCriterionToString(searchString, "CustomerName", str(customerNameVal))
@@ -52,8 +58,8 @@ def buildSearchString(data):
     if phoneNumberVal != "":
         searchString = addSearchCriterionToString(searchString, "PhoneNumber", str(phoneNumberVal))
     #searchString = addDateRangeToString(searchString)
-    searchString = addDateAndTypeRangeToString(searchString)
-    searchString = addCheckbuttonCriteriaToString(searchString)
+    searchString = addDateAndTypeRangeToString(data, searchString)
+    #searchString = addCheckbuttonCriteriaToString(data, searchString)
     print(searchString)
     return searchString
 
@@ -66,7 +72,7 @@ def addSearchCriterionToString(searchString, column, value):
         #print("2 " + searchString)
     return searchString
 
-def addCheckbuttonCriteriaToString(searchString):
+def addCheckbuttonCriteriaToString(data, searchString):
     flgEstimateValue=flgEstimates.get()
     flgInvoicesValue=flgInvoices.get()
     if flgEstimateValue==0 and flgInvoicesValue==0:
@@ -108,10 +114,10 @@ def getStartAndEndOfPeriod(period):
     print(str(startOfPeriod) + str(endOfPeriod))
     return startOfPeriod, endOfPeriod
 
-def addDateAndTypeRangeToString(searchString):
+def addDateAndTypeRangeToString(data, searchString):
     dateString=""
-    dateStartVal = guessDateFormat(dateStart.get())
-    dateEndVal=guessDateFormat(dateEnd.get())
+    dateStartVal = guessDateFormat(data['start'])
+    dateEndVal=guessDateFormat(data['end'])
     if dateStartVal==None and dateEndVal==None:
         return searchString
     print(str(dateStartVal) +  str(dateEndVal))
@@ -219,15 +225,3 @@ def guessDateFormat(inputDate):
 
     print ("Date is not in expected format: %s" + inputDate)
 
-def viewInvoiceHeaders():
-    for item in tree.get_children():
-        tree.delete(item)
-    tree.grid(row=0, column=0)
-    searchString = buildSearchString()
-    #print("******   searchString   *****")
-    #print(searchString)
-    rows = getInvoiceHeaders(searchString)    
-    for row in rows:
-        #print(row) 
-        tree.insert("", END, values=row)
-    totalValue()

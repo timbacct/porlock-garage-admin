@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
   <head>
     <title>Central Garage System</title>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
       #banner {
         height: 180px;
         width: 100%;
-        object: fit cover;
+        object-fit: cover;
       }
       body {
       	width: 1200px;
@@ -21,6 +21,8 @@
   <body>
     {% include 'navbar.html' %}
     <img class="mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
+    {{searchstring}}
+    {{data}}
     <table class="table">
       <tr>
         <th>Search Criteria</th>
@@ -29,7 +31,7 @@
       <tr>
         <td>
     
-          <form action="/action_page.php">
+          <form action="/" method="get">
             <br>
             <label for="customername">Customer Name</label><br>
             <input type="text" id="customername" name="customername"><br>
@@ -50,6 +52,8 @@
                 <td>
                   <label for="all">All</label><br>
                 </td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td>
@@ -108,8 +112,8 @@
                 </td>
               </tr>
             </table>
-                  <div style="width: 250px; border: 1px outset black; background-color: transparent; text-align: centre">
-              <label for="datetype">Date type</label>
+            <div style="width: 250px; border: 1px outset black; background-color: transparent; text-align: center;">
+              <label>Date type</label>
               
               <input type="radio" id="In" name="datetype" value="in">
               <label for="In">In</label>
@@ -120,10 +124,10 @@
               <label for="estimates"> Estimates</label>
               <input type="checkbox" id="invoices" name="invoices" value="invoices">
               <label for="invoices"> Invoices</label><br><br>
-            <label for="start">Start</label><br>
-            <input type="text" id="start" name="start"><br>
-            <label for="end">End</label><br>
-            <input type="text" id="end" name="end"><br>
+              <label for="start">Start</label><br>
+              <input type="text" id="start" name="start"><br>
+              <label for="end">End</label><br>
+              <input type="text" id="end" name="end"><br>
             </div>
             <br>
             <input type="submit" value="Display Data">
@@ -147,11 +151,9 @@
               <th>Path Name</th>
               <th>File Name</th>
             </tr>
-            <div class="items">
-              {% for invoice in invoiceheaders %}
+              {% for invoice in invoiceheaders %}  
                 {% include 'invoicelist.html' %}
               {% endfor%}
-            </div>
           </table>
         </td>
       </tr>
