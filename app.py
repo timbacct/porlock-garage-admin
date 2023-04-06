@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from database import dictify
 from buttonhandlers import *
 from logic import *
 
@@ -40,12 +39,13 @@ def homepage():
     data = request.args
     searchString = buildSearchString(data)
     invoiceHeaders = getInvoiceHeaders(searchString)
-    return render_template('home.html', searchstring=searchString, data=data, invoiceheaders=invoiceHeaders)
+    return render_template('home.html',
+                           searchstring=searchString,
+                           data=data,
+                           invoiceheaders=invoiceHeaders)
   except:
     data = "No search criteria"
     return render_template('home.html', data=data)
-
-
 
 
 @app.route("/invoiceheader/<ID>")

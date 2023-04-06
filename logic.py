@@ -1,4 +1,4 @@
-from database import getInvoiceHeaders, deleteInvoice, getLastUpdate, dictify
+from database import getInvoiceHeaders, deleteInvoice, getLastUpdate
 
 
 def viewInvoiceHeaders(data):
