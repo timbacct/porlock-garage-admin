@@ -32,6 +32,18 @@ def getInvoiceHeaders(searchString):
         + str(searchString) + " ORDER BY DateInJulian "))
     return result
 
+def getInvoiceHeadersTotal(searchString):
+  #print("******   searchString   *****")
+  #print(searchString)
+  if searchString=="":
+    searchString="WHERE CustomerName LIKE '%Baker%'"
+  with engine.connect() as conn:
+    result = conn.execute(
+      text(
+        "SELECT SUM(SummaryPrice) AS TotalExVat, SUM(SummaryTotal) AS TotalIncVAT FROM InvoiceHeader "
+        + str(searchString) + " ORDER BY DateInJulian "))
+    return result
+
 #def dictify(funcName, searchString, jsonifyFlag):
 #  match funcName:
 #    case "getInvoiceHeaders":

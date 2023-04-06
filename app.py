@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from buttonhandlers import *
+from database import getInvoiceHeaders, getInvoiceHeadersTotal
 from logic import *
 
 app = Flask(__name__)
@@ -39,10 +40,12 @@ def homepage():
     data = request.args
     searchString = buildSearchString(data)
     invoiceHeaders = getInvoiceHeaders(searchString)
+    totals = getInvoiceHeadersTotals(searchString)
     return render_template('home.html',
                            searchstring=searchString,
                            data=data,
-                           invoiceheaders=invoiceHeaders)
+                           invoiceheaders=invoiceHeaders,
+                           totals=totals)
   except:
     data = "No search criteria"
     return render_template('home.html', data=data)

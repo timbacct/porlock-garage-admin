@@ -44,7 +44,7 @@
             <label for="phonenumber">Phone number</label><br>
             <input type="text" id="phonenumber" name="phonenumber"><br><br><br>
 
-            <table class="table">
+            <table class="table table-bordered">
               <tr>
                 <td>
                   <input type="radio" id="all" name="period" value="all">
@@ -112,30 +112,66 @@
                 </td>
               </tr>
             </table>
-            <div style="width: 250px; border: 1px outset black; background-color: transparent; text-align: center;">
-              <label>Date type</label>
-              
-              <input type="radio" id="In" name="datetype" value="in">
-              <label for="In">In</label>
-              <input type="radio" id="Paid" name="datetype" value="paid">
-              <label for="Paid">Paid</label><br><br>
-              
-              <input type="checkbox" id="estimates" name="Estimates" value="estimates">
-              <label for="estimates"> Estimates</label>
-              <input type="checkbox" id="invoices" name="invoices" value="invoices">
-              <label for="invoices"> Invoices</label><br><br>
-              <label for="start">Start</label><br>
-              <input type="text" id="start" name="start"><br>
-              <label for="end">End</label><br>
-              <input type="text" id="end" name="end"><br>
-            </div>
+            <table class="table table-bordered">
+              <tr>
+                <td>
+                  <label>Date type</label>
+                </td>
+                <td>
+                  <input type="radio" id="In" name="datetype" value="in" class="radio">
+                  <label for="In">In</label>
+                  <input type="radio" id="Paid" name="datetype" value="paid" class="radio">
+                 <label for="Paid">Paid</label><br><br>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" id="estimates" name="Estimates" value="estimates">
+                  <label for="estimates"> Estimates</label>
+                </td>
+                <td>
+                  <input type="checkbox" id="invoices" name="invoices" value="invoices">
+                  <label for="invoices"> Invoices</label><br><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="start">Start</label><br>
+                  <input type="text" id="start" name="start"><br>
+                </td>
+                <td>
+                  <label for="end">End</label><br>
+                  <input type="text" id="end" name="end" class="mb-2"><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="submit" value="Display Data">
+                </td>
+                <td>
+                  <input type="submit" value="Clear Filters">
+                </td>
+              </tr>
+            </table>
+            <table style="width:300px; border:1px solid black";>
+              <tr>
+                <td style="height:40px;">
+                  <label>Date Last Updated: </label>
+                    {{data["dateLastUpdated"]}}
+                </td>
+              </tr>
+              <tr>
+                <td align="center">
+                  <input type="submit" value="Update now">
+                </td>
+              </tr>
+            </table>
             <br>
-            <input type="submit" value="Display Data">
-            <input type="submit" value="Clear Filters">
+
           </form>
         </td>
         <td>
-          <table class="table">
+          <table class="table table-bordered table-hover">
             <tr>
               <th>Customer Name</th>
               <th>Invoice Number</th>

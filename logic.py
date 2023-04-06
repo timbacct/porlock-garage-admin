@@ -1,4 +1,4 @@
-from database import getInvoiceHeaders, deleteInvoice, getLastUpdate
+from database import deleteInvoice, getLastUpdate
 
 
 def viewInvoiceHeaders(data):
@@ -7,35 +7,17 @@ def viewInvoiceHeaders(data):
       searchString = ""
     else:
       searchString = buildSearchString(data)
-      invoiceHeaders = getInvoiceHeaders(searchString)
+      #invoiceHeaders = getInvoiceHeaders(searchString)
     print("******   searchString   *****")
     print(searchString)
     
     return searchString
 
-def totalValue(item=""):
-    total=0
-    for child in tree.get_children():
-        total=total + float(tree.item(child)["values"][8][1:])
-    print(total)
-    totalString="£{:,.2f}".format(total)
-    invoiceTotal.delete(0,END)
-    invoiceTotal.insert(0,totalString)
-    total=0
-    for child in tree.get_children():
-        total=total + float(tree.item(child)["values"][9][1:])
-    print(total)
-    totalString="£{:,.2f}".format(total)
-    invoiceTotalIncVAT.delete(0,END)
-    invoiceTotalIncVAT.insert(0,totalString)
-    
 def getDateLastUpdated():
-    dateLastUpdated.delete(0,END)
+    #dateLastUpdated.delete(0,END)
     displayDate=guessDateFormat(getLastUpdate())
     #print (displayDate.strftime("%d/%m/%Y"))
-    dateLastUpdated.insert(0,displayDate.strftime("%d/%m/%Y"))
-
-
+    return displayDate
 
 def buildSearchString(data):
     searchString=""
@@ -147,6 +129,7 @@ def addDateAndTypeRangeToString(data, searchString):
 
 def setDateFields():
     rbSelection=timeScope.get()
+    rbSelection="All"
     match rbSelection:
         case 1: # All
             startOfPeriod=""
