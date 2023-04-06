@@ -17,6 +17,19 @@
             }
       
     </style>
+    <script>
+      function clearFilters(){
+        document.getElementById("customername").value = "";
+        document.getElementById("registrationnumber").value = "";
+        document.getElementById("datein").value = "";
+        document.getElementById("makemodel").value = "";
+        document.getElementById("phonenumber").value = "";
+        document.getElementById("period").value = "all";
+        document.getElementById("estimates").value = "";
+        document.getElementById("invoices").value = "invoices";
+        
+      }
+    </script>
   </head>
   <body>
     {% include 'navbar.html' %}
@@ -31,23 +44,23 @@
       <tr>
         <td>
     
-          <form action="/" method="get">
+          <form action="/" method="get" id="filterform">
             <br>
-            <label for="customername">Customer Name</label><br>
-            <input type="text" id="customername" name="customername"><br>
+            <label id="customernamelabel" for="customername">Customer Name</label><br>
+            <input type="text" id="customername" name="customername" value={{data['customername']}}><br>
             <label for="registrationnumber">Registration Number</label><br>
-            <input type="text" id="registrationnumber" name="registrationnumber"><br>
+            <input type="text" id="registrationnumber" name="registrationnumber" value={{data['registrationnumber']}}><br>
             <label for="datein">Date in</label><br>
-            <input type="text" id="datein" name="datein"><br>
+            <input type="text" id="datein" name="datein" value={{data['datein']}}><br>
             <label for="makemodel">Make/model</label><br>
-            <input type="text" id="makemodel" name="makemodel"><br>
+            <input type="text" id="makemodel" name="makemodel" value={{data['makemodel']}}><br>
             <label for="phonenumber">Phone number</label><br>
-            <input type="text" id="phonenumber" name="phonenumber"><br><br><br>
+            <input type="text" id="phonenumber" name="phonenumber" value={{data['phonenumber']}}><br><br><br>
 
             <table class="table table-bordered">
               <tr>
                 <td>
-                  <input type="radio" id="all" name="period" value="all">
+                  <input type="radio" id="all" name="period" value="all" {% if data['period']=="all":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
                   <label for="all">All</label><br>
@@ -57,7 +70,7 @@
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="today" name="period" value="today">
+                  <input type="radio" id="today" name="period" value="today" {% if data['period']=="today" or data["period"]=="":  %} checked="checked"checked {% endif %}>
                 </td>
                 <td>
                   <label for="today">Today</label>           
@@ -71,7 +84,7 @@
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="thisweek" name="period" value="thisweek">
+                  <input type="radio" id="thisweek" name="period" value="thisweek" {% if data['period']=="thisweek":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
                   <label for="thisweek">This Week</label>
@@ -85,7 +98,7 @@
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="thismonth" name="period" value="thismonth">
+                  <input type="radio" id="thismonth" name="period" value="thismonth" {% if data['period']=="thismonth":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
                   <label for="thismonth">This Month</label>
@@ -99,7 +112,7 @@
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="thisyear" name="period" value="thisyear">
+                  <input type="radio" id="thisyear" name="period" value="thisyear" {% if data['period']=="thisyear":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
                   <label for="thisyear">This Year</label><br><br>
@@ -149,7 +162,7 @@
                   <input type="submit" value="Display Data">
                 </td>
                 <td>
-                  <input type="submit" value="Clear Filters">
+                  <button type="button" onclick="clearFilters()">Clear Filters</button>
                 </td>
               </tr>
             </table>
@@ -167,8 +180,9 @@
               </tr>
             </table>
             <br>
-
+            
           </form>
+
         </td>
         <td>
           <table class="table table-bordered table-hover">
@@ -195,5 +209,6 @@
       </tr>
     </table>
     {% include 'footer.html' %}
+
   </body>
 </html>

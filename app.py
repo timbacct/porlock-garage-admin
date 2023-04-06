@@ -38,9 +38,10 @@ INVOICEHEADER = [{
 def homepage():
   try:
     data = request.args
+    
     searchString = buildSearchString(data)
     invoiceHeaders = getInvoiceHeaders(searchString)
-    totals = getInvoiceHeadersTotals(searchString)
+    totals = getInvoiceHeadersTotal(searchString)
     return render_template('home.html',
                            searchstring=searchString,
                            data=data,
@@ -48,7 +49,7 @@ def homepage():
                            totals=totals)
   except:
     data = "No search criteria"
-    return render_template('home.html', data=data)
+    return render_template('home.html', searchstring=searchString, data=data)
 
 
 @app.route("/invoiceheader/<ID>")

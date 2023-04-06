@@ -1,4 +1,6 @@
 from database import deleteInvoice, getLastUpdate
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
 
 
 def viewInvoiceHeaders(data):
@@ -39,7 +41,7 @@ def buildSearchString(data):
         searchString = addSearchCriterionToString(searchString, "MakeModel", str(makeModelVal))
     if phoneNumberVal != "":
         searchString = addSearchCriterionToString(searchString, "PhoneNumber", str(phoneNumberVal))
-    #searchString = addDateRangeToString(searchString)
+    #obsolete searchString = addDateRangeToString(data, searchString)
     searchString = addDateAndTypeRangeToString(data, searchString)
     #searchString = addCheckbuttonCriteriaToString(data, searchString)
     print(searchString)
@@ -103,12 +105,12 @@ def addDateAndTypeRangeToString(data, searchString):
     if dateStartVal==None and dateEndVal==None:
         return searchString
     print(str(dateStartVal) +  str(dateEndVal))
-    if buttonDate.config('text')[-1] == "Paid":
+    if data['datetype'] == "paid":
         columnName="PaidDateJulian"
     else:
         columnName="DateInJulian"
-    if dateStart =="":
-        if dateEnd =="":
+    if data['start'] =="":
+        if data['end'] =="":
             # no range - drop out
             pass
         else:
@@ -153,32 +155,32 @@ def setDateFields():
         dateStart.insert(0,startOfPeriod.strftime("%d/%m/%Y"))
         dateEnd.insert(0,endOfPeriod.strftime("%d/%m/%Y"))
 
-def addDateRangeToString(searchString):
+def addDateRangeToString(data, searchString):
     dateString = ""
     #dateStart.delete(0,END)
     #dateEnd.delete(0,END)
-    match timeScope.get():
-        case 1:
+    match data['period']:
+        case 'all':
             dateString = ""
-        case 2:
-            dateString = " DateInJulian = julianday(date('now')) "
+        case 'today':
+            dateString = " DateInJulian = TO_DAYS(date('now'))+1721060 "
             #dateStart.insert(0,datetime.today())
             #dateEnd.insert(0,datetime.today())
-        case 3:
+        case 'thisweek':
             startOfPeriod, endOfPeriod = getStartAndEndOfPeriod("Week")
-            dateString = " DateInJulian BETWEEN julianday('" + startOfPeriod.strftime('%Y-%m-%d') + "') AND julianday('" + endOfPeriod.strftime('%Y-%m-%d') + "')"
+            dateString = " DateInJulian BETWEEN TO_DAYS('" + startOfPeriod.strftime('%Y-%m-%d') + "')  + 1721060 AND TO_DAYS('" + endOfPeriod.strftime('%Y-%m-%d') + "') + 1721060"
             #dateStart.insert(0,startOfPeriod)
             #dateEnd.insert(0,endOfPeriod)
-        case 4:
+        case 'thismonth':
             startOfPeriod, endOfPeriod = getStartAndEndOfPeriod("Month")
             #dateStart.insert(0,startOfPeriod)
             #dateEnd.insert(0,endOfPeriod)
             #dateString = " DateInJulian BETWEEN julianday(date('now', 'start of month')) AND julianday(date('now'))"
-        case 5:
+        case 'thisyear':
             #startOfPeriod, endOfPeriod = getStartAndEndOfPeriod("Year")
             #dateStart.insert(0,startOfPeriod)
             #dateEnd.insert(0,endOfPeriod)
-            dateString = " DateInJulian BETWEEN julianday(date('now', 'start of year')) AND julianday(date('now'))"
+            dateString = " DateInJulian BETWEEN TO_DAYS(date('now', 'start of year')) + 1721060 AND TO_DAYS(date('now')) + 1721060"
     if dateString == "":
         pass
     else:
