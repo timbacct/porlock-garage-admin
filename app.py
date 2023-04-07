@@ -49,7 +49,7 @@ def homepage():
                            totals=totals)
   except:
     data = "No search criteria"
-    return render_template('home.html', searchstring=searchString, data=data)
+    return render_template('home.html', data=data)
 
 
 @app.route("/invoiceheader/<ID>")

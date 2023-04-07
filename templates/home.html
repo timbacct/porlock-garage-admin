@@ -15,6 +15,9 @@
       	width: 1200px;
       	margin: auto;
             }
+      button {
+        class="btn btn-outline-success"
+      }
       
     </style>
     <script>
@@ -47,15 +50,15 @@
           <form action="/" method="get" id="filterform">
             <br>
             <label id="customernamelabel" for="customername">Customer Name</label><br>
-            <input type="text" id="customername" name="customername" value={{data['customername']}}><br>
+            <input type="text" id="customername" class="form-control me-2" name="customername" value={{data['customername']}}>
             <label for="registrationnumber">Registration Number</label><br>
-            <input type="text" id="registrationnumber" name="registrationnumber" value={{data['registrationnumber']}}><br>
+            <input type="text" id="registrationnumber" class="form-control me-2" name="registrationnumber" value={{data['registrationnumber']}}>
             <label for="datein">Date in</label><br>
-            <input type="text" id="datein" name="datein" value={{data['datein']}}><br>
+            <input type="text" id="datein" class="form-control me-2" name="datein" value={{data['datein']}}>
             <label for="makemodel">Make/model</label><br>
-            <input type="text" id="makemodel" name="makemodel" value={{data['makemodel']}}><br>
+            <input type="text" id="makemodel" class="form-control me-2" name="makemodel" value={{data['makemodel']}}>
             <label for="phonenumber">Phone number</label><br>
-            <input type="text" id="phonenumber" name="phonenumber" value={{data['phonenumber']}}><br><br><br>
+            <input type="text" id="phonenumber" class="form-control me-2" name="phonenumber" value={{data['phonenumber']}}><br>
 
             <table class="table table-bordered">
               <tr>
@@ -150,19 +153,19 @@
               <tr>
                 <td>
                   <label for="start">Start</label><br>
-                  <input type="text" id="start" name="start"><br>
+                  <input type="text" id="start" class="form-control me-2" name="start"><br>
                 </td>
                 <td>
                   <label for="end">End</label><br>
-                  <input type="text" id="end" name="end" class="mb-2"><br>
+                  <input type="text" id="end" class="form-control me-2" name="end" class="mb-2"><br>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <input type="submit" value="Display Data">
+                  <input type="submit" class="btn btn-outline-success" value="Display Data">
                 </td>
                 <td>
-                  <button type="button" onclick="clearFilters()">Clear Filters</button>
+                  <button type="button" class="btn btn-outline-success" onclick="clearFilters()">Clear Filters</button>
                 </td>
               </tr>
             </table>
