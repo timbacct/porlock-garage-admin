@@ -2,6 +2,6 @@ Flask
 gunicorn
 sqlalchemy
 pymysql
-dateutil
+dateutil.relativedelta
 datetime
 os
