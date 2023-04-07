@@ -4,4 +4,4 @@ sqlalchemy
 pymysql
 python-dateutil
 datetime
-os
+os-sys
