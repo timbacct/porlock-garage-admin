@@ -5,3 +5,4 @@ pymysql
 python-dateutil
 datetime
 os-sys
+setuptools
