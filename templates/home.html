@@ -6,21 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
+      th {
+         style="white-space:nowrap";
+      }
       #banner {
         height: 180px;
         width: 100%;
         object-fit: cover;
       }
       body {
-      	width: 1200px;
+      	width: 1800px;
       	margin: auto;
             }
       button {
-        class="btn btn-outline-success"
+        class="btn btn-outline-success";
       }
+
       
     </style>
-    <script>
+
+  </head>
+  <body>
+    <!-- script type="text/javascript"  src="home.js"></script-->
+    <script type="text/javascript">
       function clearFilters(){
         document.getElementById("customername").value = "";
         document.getElementById("registrationnumber").value = "";
@@ -32,9 +40,31 @@
         document.getElementById("invoices").value = "invoices";
         
       }
+      function showAlert(alertText){
+        alert(alertText);
+      }
+      
+      /* const btn = document.querySelector('#btn');        
+      const radioButtons = document.querySelectorAll('input[name="period"]');
+      btn.addEventListener("click", () => {
+          showAlert("Listener triggered");
+          let selectedPeriod;
+          for (const radioButton of radioButtons) {
+              if (radioButton.checked) {
+                  selectedPeriod = radioButton.value;
+                  break;
+              }
+          }
+          // set date fields:
+          switch(selectedPeriod) {
+            case 'today':
+              document.getElementById("start")=Date().getDay();
+            default:
+              alert("Functionality for that button not yet written");
+          }
+      }); */
+
     </script>
-  </head>
-  <body>
     {% include 'navbar.html' %}
     <img class="mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
     {{searchstring}}
@@ -127,6 +157,13 @@
                   <button type="button">-</button><br>
                 </td>
               </tr>
+              <tr>
+
+                <td>
+                  <button id="btn">Set date fields</button>
+                </td>
+                
+              </tr>
             </table>
             <table class="table table-bordered">
               <tr>
@@ -162,10 +199,10 @@
               </tr>
               <tr>
                 <td>
-                  <input type="submit" class="btn btn-outline-success" value="Display Data">
+                  <input type="submit" class="btn btn-outline-primary" value="Display Data">
                 </td>
                 <td>
-                  <button type="button" class="btn btn-outline-success" onclick="clearFilters()">Clear Filters</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="clearFilters()">Clear Filters</button>
                 </td>
               </tr>
             </table>
@@ -178,7 +215,7 @@
               </tr>
               <tr>
                 <td align="center">
-                  <input type="submit" value="Update now">
+                  <input type="submit" value="Update now" class="btn btn-outline-danger btn-lg mt-3 mb-3">
                 </td>
               </tr>
             </table>
@@ -190,19 +227,19 @@
         <td>
           <table class="table table-bordered table-hover">
             <tr>
-              <th>Customer Name</th>
-              <th>Invoice Number</th>
-              <th>Phone Number</th>
-              <th>Date In</th>
-              <th>Date Paid</th>
-              <th>Make/Model</th>
-              <th>Reg No</th>
-              <th>Mileage</th>
-              <th>Summary Price</th>
-              <th>Summary Total</th>
-              <th>ID</th>
-              <th>Path Name</th>
-              <th>File Name</th>
+              <th style="white-space:nowrap">Customer Name</th>
+              <th style="white-space:nowrap">Invoice Number</th>
+              <th style="white-space:nowrap">Phone Number</th>
+              <th style="white-space:nowrap">Date In</th>
+              <th style="white-space:nowrap">Date Paid</th>
+              <th style="white-space:nowrap">Make/Model</th>
+              <th style="white-space:nowrap">Reg No</th>
+              <th style="white-space:nowrap">Mileage</th>
+              <th style="white-space:nowrap">Summary Price</th>
+              <th style="white-space:nowrap">Summary Total</th>
+              <th style="white-space:nowrap">ID</th>
+              <th style="white-space:nowrap">Path Name</th>
+              <th style="white-space:nowrap">File Name</th>
             </tr>
               {% for invoice in invoiceheaders %}  
                 {% include 'invoicelist.html' %}
