@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from buttonhandlers import *
-from database import getInvoiceHeaders, getInvoiceHeadersTotal
+from database import getInvoiceHeaders, getInvoiceHeader, getInvoiceHeadersTotal, getParts, getWork
 from logic import *
 
 app = Flask(__name__)
@@ -52,10 +52,12 @@ def homepage():
     return render_template('home.html', data=data)
 
 
-@app.route("/invoiceheader/<ID>")
-def loadInvoiceHeader(ID):
-  #invoiceHeader = dictify("getInvoiceHeader", ID, "N")
-  return render_template('invoiceheader.html', invoiceheader=INVOICEHEADER[0])
+@app.route("/invoice/<ID>")
+def loadInvoice(ID):
+  invoiceHeader = getInvoiceHeader(ID)
+  parts=getParts(ID)
+  work=getWork(ID)
+  return render_template('invoiceheader.html', data=invoiceHeader, parts=parts, work=work)
 
 
 if __name__ == "__main__":

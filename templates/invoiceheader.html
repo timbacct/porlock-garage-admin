@@ -1,11 +1,785 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
   <head>
-    <customername> {{invoiceheader['customername']}} - Central Garage</customername>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+
+    <title>Central Garage System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+   <style type="text/css">
+      th {
+         style="white-space:nowrap";
+      }
+      #banner {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+      }
+      body {
+      	width: 2000px;
+      	margin: auto;
+            }
+      button {
+        class="btn btn-outline-success";
+      }
+
+      p.p1 {margin: 0.0px 0.0px 0.0px 4.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p2 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 18.7px 'Arial Black'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p3 {margin: 0.0px 0.0px 0.0px 5.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 15.0px}
+      p.p4 {margin: 0.0px 0.0px 0.0px 5.0px; font: 14.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p5 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 18.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 22.0px}
+      p.p6 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 15.0px}
+      p.p7 {margin: 0.0px 0.0px 0.0px 5.0px; font: 14.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 16.0px}
+      p.p8 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: left; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p9 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      span.s1 {font-kerning: none}
+      table.t1 {width: 1389.3px; border-collapse: collapse; table-layout: fixed}
+      td.td1 {width: 158.2px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td2 {width: 224.0px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td3 {width: 92.0px}
+      td.td4 {width: 92.0px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td5 {width: 337.3px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td6 {width: 117.3px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td7 {width: 92.0px; border-style: solid; border-width: 0.5px 0.5px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td8 {width: 91.5px}
+      td.td9 {width: 158.2px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td10 {width: 125.3px}
+      td.td11 {width: 98.7px}
+      td.td12 {width: 337.3px}
+      td.td13 {width: 117.3px}
+      td.td14 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td15 {width: 183.5px}
+      td.td16 {width: 158.2px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td17 {width: 125.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td18 {width: 98.7px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td19 {width: 92.0px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td20 {width: 337.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td21 {width: 117.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td22 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td23 {width: 158.7px}
+      td.td24 {width: 368.0px}
+      td.td25 {width: 158.2px; border-style: solid; border-width: 1.0px 0.5px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td26 {width: 124.8px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td27 {width: 98.2px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td28 {width: 91.5px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td29 {width: 336.8px; border-style: solid; border-width: 1.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td30 {width: 92.0px; border-style: solid; border-width: 1.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td31 {width: 117.3px; border-style: solid; border-width: 1.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td32 {width: 91.0px; border-style: solid; border-width: 1.0px 1.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td33 {width: 275.5px}
+      td.td34 {width: 158.2px; border-style: solid; border-width: 0.0px 0.5px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td35 {width: 223.5px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td36 {width: 336.8px}
+      td.td37 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td38 {width: 223.5px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td39 {width: 124.8px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td40 {width: 428.8px}
+      td.td41 {width: 546.2px}
+      td.td42 {width: 336.8px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td43 {width: 92.0px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td44 {width: 117.3px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td45 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td46 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td47 {width: 91.5px; border-style: solid; border-width: 0.5px 1.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td48 {width: 91.5px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td49 {width: 336.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td50 {width: 91.5px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td51 {width: 116.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td52 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td53 {width: 91.5px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td54 {width: 116.8px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td55 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td56 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td57 {width: 184.0px}
+      td.td58 {width: 158.2px; border-style: solid; border-width: 0.0px 0.5px 1.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td59 {width: 124.8px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td60 {width: 98.2px; border-style: solid; border-width: 0.5px 0.0px 1.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td61 {width: 91.0px; border-style: solid; border-width: 0.5px 0.0px 1.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td62 {width: 336.8px; border-style: solid; border-width: 0.5px 0.5px 1.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td63 {width: 91.5px; border-style: solid; border-width: 0.0px 0.5px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td64 {width: 116.8px; border-style: solid; border-width: 0.0px 0.5px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td65 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td66 {width: 276.0px}
+  </style>
+
   </head>
-  <body>
-    <h3>Customer Name
-      <p> {{invoiceheader['customername']}}</p>
-    </h3>
+  <body style="padding-left:20px">
+    {% include 'navbar.html' %}
+    <img class="mt-2  img-fluid max-width: 100%  height: auto" src="/static/GarageBanner.png" alt="Central Garage Banner">
+{{parts[0]}}
+{{work[0]}}
+    
+    <table width="1389.3" cellspacing="0" cellpadding="0" class="t1">
+      <tbody>
+        <tr>
+          <td valign="bottom" class="td1">
+            <p class="p1"><span class="s1"><b>Name</b></span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td2">
+            <p class="p1"><span class="s1"><b>Telephone number</b></span></p>
+          </td>
+          <td valign="bottom" class="td5">
+            <p class="p2"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td5">
+            <p class="p2"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td4">
+            <p class="p2"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td6">
+            <p class="p1"><span class="s1"><b>Invoice No.</b></span></p>
+          </td>
+          <td valign="bottom" class="td7">
+            <p class="p1"><span class="s1">{{data["InvoiceNumber"]}}</span></p>
+          </td>
+          <td valign="bottom" class="td8">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p4"><span class="s1"><i>{{data['CustomerName']}}</i></span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p1"><span class="s1">{{data["PhoneNumber"]}}</span></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p5"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p5"><span class="s1"><b></b></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p1"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p3"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p1"><span class="s1"><b> Paid date </b></span></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1">{{data["PaidDate"]}}</span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p1"><span class="s1"><b>Date in</b></span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p6"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p1"><span class="s1"><b> Payment type </b></span></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1">{{data["PaymentType"]}}</span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p6"><span class="s1"><b></b></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p1"><span class="s1">{{data["DateIn"]}}</span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p7"><span class="s1"><i></i></span><br></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p3"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p1"><span class="s1"><b> Cashier </b></span></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1">{{data["Cashier"]}}</span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"><b></b></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p7"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p6"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p6"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p1"><span class="s1"><b>Make/model</b></span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p1"><span class="s1"><b>Reg No.</b></span></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p1"><span class="s1"><b>Mileage</b></span></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td9">
+            <p class="p1"><span class="s1">{{data["MakeModel"]}}</span></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p1"><span class="s1">{{data["RegistrationNumber"]}}</span></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p8" align="left"><span class="s1">{{data["Mileage"]}}</span></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td14">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td16">
+            <p class="p4"><span class="s1"><i>{{data["MakeModel2"]}}</i></span></p>
+          </td>
+          <td valign="bottom" class="td17">
+            <p class="p4"><span class="s1"><i> </i></span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p4"><span class="s1"><i> </i></span></p>
+          </td>
+          <td valign="bottom" class="td19">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td20">
+            <p class="p9"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td19">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td21">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td22">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td15">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p6"><span class="s1"><b></b></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td23">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p6"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p6"><span class="s1"><b></b></span><br></p>
+          </td>
+          <td colspan="4" valign="bottom" class="td24">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td25">
+            <p class="p1"><span class="s1"><b>Part Number</b></span></p>
+          </td>
+          <td valign="bottom" class="td26">
+            <p class="p1"><span class="s1"><b>Part</b></span></p>
+          </td>
+          <td valign="bottom" class="td27">
+            <p class="p9"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td28">
+            <p class="p9"><span class="s1"><b> Total </b></span></p>
+          </td>
+          <td valign="bottom" class="td29">
+            <p class="p1"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td30">
+            <p class="p1"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td31">
+            <p class="p9"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td32">
+            <p class="p9"><span class="s1"><b> Price </b></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        {% for i in range (0, 20) %}  
+
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1">{{parts[i]['PartsCode']}}</span></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td35">
+            <p class="p1"><span class="s1">{{parts[i]['PartsDescription']}}</span></p>
+          </td>
+          <td valign="bottom" class="td22">
+            <p class="p1"><span class="s1">{{parts[i]['PartsPrice']}}<span class="Apple-converted-space"> </span></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td36">
+            <p class="p1"><span class="s1">{{work[i]['WorkDescription']}}</span></p>
+          </td>
+
+          <td valign="bottom" class="td37">
+            <p class="p1"><span class="s1">{{work[i]['WorkPrice']}}</span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        {% endfor%}   
+        
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td22">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td42">
+            <p class="p8"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td43">
+            <p class="p8"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td44">
+            <p class="p1"><span class="s1"><b>MOT</b></span></p>
+          </td>
+          <td valign="bottom" class="td37">
+            <p class="p1"><span class="s1">{{data['MOTValue']}}<span class="Apple-converted-space"> </span></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td22">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td45">
+            <p class="p8"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td19">
+            <p class="p8"><span class="s1"><b>Total</b></span></p>
+          </td>
+          <td valign="bottom" class="td21">
+            <p class="p1"><span class="s1"><b>Labour</b></span></p>
+          </td>
+          <td valign="bottom" class="td46">
+            <p class="p1"><span class="s1">{{data['ListLabourTotal']}}<span class="Apple-converted-space"> </span></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td22">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td36">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td47">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td48">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td49">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td50">
+            <p class="p1"><span class="s1"><b>Price</b></span></p>
+          </td>
+          <td valign="bottom" class="td51">
+            <p class="p1"><span class="s1"><b> VAT </b></span></p>
+          </td>
+          <td valign="bottom" class="td32">
+            <p class="p1"><span class="s1"><b> Total </b></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td48">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td52">
+            <p class="p1"><span class="s1"><b>Labour</b></span></p>
+          </td>
+          <td valign="bottom" class="td53">
+            <p class="p1"><span class="s1"><b>{{data['SummaryLabour']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td54">
+            <p class="p1"><span class="s1"><b>{{data['SummaryLabourVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td55">
+            <p class="p1"><span class="s1"><b>{{data['SummaryLabourTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td48">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td52">
+            <p class="p1"><span class="s1"><b>MOT</b></span></p>
+          </td>
+          <td valign="bottom" class="td53">
+            <p class="p1"><span class="s1"><b>{{data['SummaryMOT']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td54">
+            <p class="p1"><span class="s1"><b>{{data['SummaryMOTVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td55">
+            <p class="p1"><span class="s1"><b>{{data['SummaryTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td18">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td48">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td52">
+            <p class="p1"><span class="s1"><b>Parts/accessories</b></span></p>
+          </td>
+          <td valign="bottom" class="td53">
+            <p class="p1"><span class="s1"><b>{{data['SummaryParts']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td54">
+            <p class="p1"><span class="s1"><b>{{data['SummaryPartsVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td55">
+            <p class="p1"><span class="s1"><b>{{data['SummaryPartsTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td34">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td39">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td8">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td56">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td53">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td54">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td55">
+            <p class="p1"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td8">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td colspan="2" valign="bottom" class="td57">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td58">
+            <p class="p1"><span class="s1"> </span></p>
+          </td>
+          <td valign="bottom" class="td59">
+            <p class="p8"><span class="s1"><b> </b></span></p>
+          </td>
+          <td valign="bottom" class="td60">
+            <p class="p1"><span class="s1"><b>Total Parts</b></span></p>
+          </td>
+          <td valign="bottom" class="td61">
+            <p class="p1"><span class="s1"><b>{{data['SummaryPartsTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td62">
+            <p class="p1"><span class="s1"><b>TOTAL AMOUNT DUE</b></span></p>
+          </td>
+          <td valign="bottom" class="td63">
+            <p class="p1"><span class="s1"><b>{{data['SummaryPrice']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td64">
+            <p class="p1"><span class="s1"><b>{{data['SummaryVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td valign="bottom" class="td65">
+            <p class="p1"><span class="s1"><b> £ {{data['SummaryTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td33">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="td23">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td10">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td11">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td12">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td13">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td valign="bottom" class="td3">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+          <td colspan="3" valign="bottom" class="td66">
+            <p class="p3"><span class="s1"></span><br></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+    
+    {% include 'footer.html' %}
+
   </body>
 </html>

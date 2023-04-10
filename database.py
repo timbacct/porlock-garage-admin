@@ -19,10 +19,16 @@ engine = create_engine(db_connection_string,
 #      print(result.all())
 #      return invoiceHeaders
 
+def getInvoiceHeader(selection):
+  with engine.connect() as conn:
+    result = conn.execute(
+      text(
+        "SELECT ID, CustomerName, InvoiceNumber, PhoneNumber,  DATE_FORMAT(DateIn, '%d.%m.%Y') AS DateIn, DateInJulian, MakeModel, ifnull(MakeModel2,'') AS MakeModel2, RegistrationNumber, Mileage, DATE_FORMAT(PaidDate, '%d.%m.%Y') AS PaidDate, ifnull(PaidDateJulian,0) AS PaidDateJulian, ifnull(PaymentType,'') AS PaymentType, Cashier, GarageOwner, PathName, FileName, ifnull(FileSize,0) AS FileSize, ifnull(MOTValue,0) AS MOTValue, ifnull(ListPartsTotal,0) AS ListPartsTotal, ifnull(ListLabourTotal,0) AS ListLabourTotal, ifnull(SummaryLabour,0) AS SummaryLabour, ifnull(SummaryLabourVAT,0) AS SummaryLabourVAT, ifnull(SummaryLabourTotal,0) AS SummaryLabourTotal, ifnull(SummaryMOT,0) AS SummaryMOT, ifnull(SummaryMOTVAT,0) AS SummaryMOTVAT, ifnull(SummaryMOTTotal,0) AS SummaryMOTTotal, ifnull(SummaryParts,0) AS SummaryParts, ifnull(SummaryPartsVAT,0) AS SummaryPartsVAT, ifnull(SummaryPartsTotal,0) AS SummaryPartsTotal, ifnull(SummaryPrice,0) AS SummaryPrice, ifnull(SummaryVAT,0) AS SummaryVAT, ifnull(SummaryTotal,0) AS SummaryTotal FROM InvoiceHeader WHERE ID = "
+        + str(selection))).fetchone()
+    return result
+
 
 def getInvoiceHeaders(searchString):
-  #print("******   searchString   *****")
-  #print(searchString)
   if searchString=="":
     pass
   else:
@@ -61,21 +67,13 @@ def getInvoiceHeadersTotal(searchString):
 #    return dictifiedResult
 
 
-def getInvoiceHeader(selection):
-  with engine.connect() as conn:
-    result = conn.execute(
-      text(
-        "SELECT ID, CustomerName, InvoiceNumber, PhoneNumber, DateIn, DateInJulian, MakeModel, RegistrationNumber, Mileage, ifnull(PaidDate, ''), ifnull(PaidDateJulian,0), ifnull(PaymentType,''), Cashier, GarageOwner, PathName, FileName, ifnull(FileSize,0), ifnull(MOTValue,0), ifnull(ListPartsTotal,0), ifnull(ListLabourTotal,0), ifnull(SummaryLabour,0), ifnull(SummaryLabourVAT,0), ifnull(SummaryLabourTotal,0), ifnull(SummaryMOT,0), ifnull(SummaryMOTVAT,0), ifnull(SummaryMOTTotal,0), ifnull(SummaryParts,0), ifnull(SummaryPartsVAT,0), ifnull(SummaryPartsTotal,0), ifnull(SummaryPrice,0), ifnull(SummaryVAT,0), ifnull(SummaryTotal,0) FROM InvoiceHeader WHERE ID = "
-        + str(selection)))
-    return result
-
 
 def getParts(selection):
   with engine.connect() as conn:
     result = conn.execute(
       text(
-        "SELECT Code, Description, Description2, Price FROM Parts WHERE InvoiceHeaderID = "
-        + str(selection)))
+        "SELECT Code AS PartsCode, CONCAT(description, ' ', description2) AS PartsDescription, Price AS PartsPrice, ID AS PartsID FROM Parts WHERE InvoiceHeaderID = "
+        + str(selection))).fetchall()
     return result
 
 
@@ -83,9 +81,10 @@ def getWork(selection):
   with engine.connect() as conn:
     result = conn.execute(
       text(
-        "SELECT Description, Description2, Description3, Price FROM Work WHERE InvoiceHeaderID = "
-        + str(selection)))
+        "SELECT CONCAT(Description, ' ', Description2, ' ', Description3) AS WorkDescription, Price AS WorkPrice, ID AS WorkID FROM Work WHERE InvoiceHeaderID = "
+        + str(selection))).fetchall()
     return result
+
 
 
 def deleteInvoice(selection):
