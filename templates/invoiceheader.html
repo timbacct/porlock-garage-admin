@@ -18,14 +18,14 @@
         object-fit: cover;
       }
       body {
-      	width: 1380px;
+      	width: 1150px;
       	margin: auto;
             }
       button {
         class="btn btn-outline-success";
       }
 
-      p.p1 {margin: 0.0px 0.0px 0.0px 4.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p1 {margin: 0.0px 4.0px 0.0px 4.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
       p.p2 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 18.7px 'Arial Black'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
       p.p3 {margin: 0.0px 0.0px 0.0px 5.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 15.0px}
       p.p4 {margin: 0.0px 0.0px 0.0px 5.0px; font: 14.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
@@ -109,10 +109,8 @@
   </head>
   <body style="padding-left:20px">
     {% include 'navbar.html' %}
-    <img class="mt-2  img-fluid max-width: 100%  height: auto" src="/static/GarageBanner.png" alt="Central Garage Banner">
-{{parts[0]}}
-{{work[0]}}
-    
+    <img class="mb-2 mt-2  img-fluid max-width: 100%  height: auto" src="/static/GarageBanner.png" alt="Central Garage Banner">
+
     <table width="1389.3" cellspacing="0" cellpadding="0" class="t1">
       <tbody>
         <tr>
@@ -475,7 +473,7 @@
           </td>
 
           <td valign="bottom" class="td37">
-            <p class="p1"><span class="s1">{% if work[i]['WorkPrice'] != "" and work[i]['WorkPrice'] != "Price" %} {{ "£%.2f"|format(work[i]['WorkPrice']|float)}} {% endif %}</span></p>
+            <p class="p1" align="right"><span class="s1">{% if work[i]['WorkPrice'] != "" and work[i]['WorkPrice'] != "Price" %} {{ "£%.2f"|format(work[i]['WorkPrice']|float)}} {% endif %}</span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
