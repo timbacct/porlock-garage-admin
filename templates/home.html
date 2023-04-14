@@ -44,6 +44,20 @@
         alert(alertText);
       }
 
+      function toggleDateType(){
+        var elem = document.getElementById("datetype");
+        var elemval = document.getElementById("datetypevalue");
+       
+        if (elem.value=="In") {
+          elem.value="Paid";
+          elemval.value="Paid";
+        } else {
+          elem.value="In";
+          elemval.value="In";
+        }
+        
+      }
+      
       window.onload = function() {
         var all = document.getElementById('all');
         var today = document.getElementById('today');
@@ -56,12 +70,15 @@
         thisweek.onclick = thisweekhandler;
         thismonth.onclick = thismonthhandler;
         thisyear.onclick = thisyearhandler;
+        //alert("got here");
+        //sumTableExVAT();
+        //sumTableIncVAT();
       }
 
       function allhandler() {
         document.getElementById("start").value = "";
         document.getElementById("end").value = "";
-        alert('clicked');
+        //alert('clicked');
       }
       
       function todayhandler() {
@@ -69,55 +86,67 @@
         let currentDate = '${day}-${month}-${year}';
         document.getElementById("start").value = date;
         document.getElementById("end").value = date;
-        alert('clicked');
+        //alert('clicked');
       }
 
       function thisweekhandler() {
-        document.getElementById("start").value = "";
-        document.getElementById("end").value = "";
-        alert('clicked');
+        const today = new Date();
+        const firstDay = new Date(today.setDate(today.getDate() - today.getDay()));
+        const lastDay = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+        document.getElementById("start").value = firstDay.toLocaleDateString();
+        document.getElementById("end").value = lastDay.toLocaleDateString();
+        //alert('clicked');
       }
 
       function thismonthhandler() {
-        document.getElementById("start").value = "";
-        document.getElementById("end").value = "";
-        alert('clicked');
+        const now = new Date();
+        const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+        const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+        document.getElementById("start").value = firstDay.toLocaleDateString();
+        document.getElementById("end").value = lastDay.toLocaleDateString();
+        //alert('clicked');
       }
+
 
       function thisyearhandler() {
-        document.getElementById("start").value = "";
-        document.getElementById("end").value = "";
-        alert('clicked');
+        const currentYear = new Date().getFullYear();
+        const firstDay = new Date(currentYear, 0, 1);
+        const lastDay = new Date(currentYear, 11, 31);
+        document.getElementById("start").value = firstDay.toLocaleDateString();
+        document.getElementById("end").value = lastDay.toLocaleDateString();
+        //alert('clicked');
       }
 
-      
-      /*const btn = document.querySelector('#btn');        
-      const radioButtons = document.querySelectorAll('input[name="period"]');
-      btn.addEventListener("click", () => {
-          showAlert("Listener triggered");
-          document.getElementById("customername").value = "Hello!";
-          let selectedPeriod;
-          for (const radioButton of radioButtons) {
-              if (radioButton.checked) {
-                  selectedPeriod = radioButton.value;
-                  break;
-              }
-          }
-          // set date fields:
-          switch(selectedPeriod) {
-            case 'today':
-              document.getElementById("start")=Date().getDay();
-            default:
-              alert("Functionality for that button not yet written");
-          }
-      }); */
+      /*function sumTableExVAT() {
+        let rows = document.getElementById("invoiceheadertable").getElementById("summaryprice");
+        let sum = 0;
+
+        //start with one to skip first row, which is column headers
+        for (let i=1; i < rows.length; i++) {
+          sum += parseFloat(rows[i].childNodes[2].firstChild.data);
+        }
+        document.getElementById("totalExVAT").value=sum;
+       
+      }
+
+      function sumTableIncVAT() {
+        let rows = document.getElementById("invoiceheadertable").getElementById("summarytotal");
+        let sum = 0;
+
+        //start with one to skip first row, which is column headers
+        for (leti=1; i < rows.length; i++)
+          sum += parseFloat(rows[i].childNodes[2].firstChild.data);
+        
+        document.getElementById("totalIncVAT").value=sum;
+      } */
 
     </script>
     {% include 'navbar.html' %}
     <img class="mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
     {{message}}<br>
     {{searchstring}}<br>
-    {{data}}
+    {{data}}<br>
+    {{totals}}
     <table class="table">
       <tr>
         <th>Search Criteria</th>
@@ -187,10 +216,10 @@
                   <label class="form-check-label" for="today">Today</label>           
                 </td>
                 <td>
-                  <button type="button">+</button>
+                  <button type="button">-</button>
                 </td>
                 <td>
-                  <button type="button">-</button><br>                      
+                  <button type="button">+</button><br>                      
                 </td>
               </tr>
               <tr>
@@ -201,10 +230,10 @@
                   <label class="form-check-label" for="thisweek">This Week</label>
                 </td>
                 <td>
-                  <button type="button">+</button>
+                  <button type="button">-</button>
                 </td>
                 <td>
-                  <button type="button">-</button><br>
+                  <button type="button">+</button><br>
                 </td>
               </tr>
               <tr>
@@ -215,10 +244,10 @@
                   <label class="form-check-label" for="thismonth">This Month</label>
                 </td>
                 <td>
-                  <button type="button">+</button>
+                  <button type="button">-</button>
                 </td>
                 <td>
-                  <button type="button">-</button><br>
+                  <button type="button">+</button><br>
                 </td>
               </tr>
               <tr>
@@ -229,40 +258,26 @@
                   <label class="form-check-label" for="thisyear">This Year</label><br><br>
                 </td>
                 <td>
-                  <button type="button">+</button>
+                  <button type="button">-</button>
                 </td>
                 <td>
-                  <button type="button">-</button><br>
+                  <button type="button">+</button><br>
                 </td>
-              </tr>
-              <tr>
-
-                <td>
-                  <button id="btn">Set date fields</button>
-                </td>
-                
               </tr>
             </table>
             <table class="table table-bordered">
               <tr>
                 <td>
                   <label>Date type</label>
+                  <input type="button" id="datetype" name="datetype" value="{% if data['datetypevalue']=="" or data['datetypevalue']=="In":  %}In{% else %}Paid{% endif %}" class="btn btn-outline-dark" onclick="toggleDateType()">
+                  <input type="hidden" id="datetypevalue" name="datetypevalue" value="{% if data['datetypevalue']=="":  %}In{% else %}Paid{% endif %}">
                 </td>
                 <td>
-                  <div>
-                    <p>In</p>
-                  </div>  
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="datetype" name="datetype" value={{data['datetype']}}>
-                  </div>  
-                  <div>
-                    <p>Paid</p>
-                  </div>
                 </td>
               </tr>
               <tr>
                 <td class="justify-content-between">
-                  <input class="form-check-input" type="checkbox" id="estimates" name="Estimates" value="estimates">
+                  <input class="form-check-input" type="checkbox" id="estimates" name="estimates" value="estimates">
                   <label class="form-check-label" for="estimates"> Estimates</label>
                 </td>
                 <td class="justify-content-between">
@@ -273,18 +288,18 @@
               <tr>
                 <td>
                   <label for="start">Start</label><br>
-                  <input type="text" id="start" class="form-control me-2" name="start" value={{data['start']}}><br>
+                  <input type="text" id="start" class="form-control-sm me-2" name="start" value={{data['start']}}><br>
                 </td>
                 <td>
                   <label for="end">End</label><br>
-                  <input type="text" id="end" class="form-control me-2" name="end" class="mb-2" value={{data['start']}}><br>
+                  <input type="text" id="end" class="form-control-sm me-2" name="end" class="mb-2" value={{data['end']}}><br>
                 </td>
               </tr>
               <tr>
-                <td>
+                <td style="text-align: center">
                   <input type="submit" class="btn btn-outline-primary" value="Display Data">
                 </td>
-                <td>
+                <td style="text-align: center">
                   <button type="button" class="btn btn-outline-primary" onclick="clearFilters()">Clear Filters</button>
                 </td>
               </tr>
@@ -308,7 +323,7 @@
 
         </td>
         <td>
-          <table class="table table-bordered table-hover table-striped">
+          <table id="invoiceheadertable" class="table table-bordered table-hover table-striped">
             <tr>
               <th style="white-space:nowrap">Customer Name</th>
               <th style="white-space:nowrap">Invoice Number</th>
@@ -327,9 +342,30 @@
               {% for invoice in invoiceheaders %}  
                 {% include 'invoicelist.html' %}
               {% endfor%}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              {% for total in totals %}
+              <td style="text-align:right" class="h5">
+                {{total['TotalExVAT']}}
+              </td>
+              <td style="text-align:right" class="h5">
+                {{total['TotalIncVAT']}}
+              </td>
+              {% endfor %}
+            </tr>
           </table>
         </td>
       </tr>
+    </table>
+    <table class="table">
+
     </table>
     {% include 'footer.html' %}
 

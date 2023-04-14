@@ -107,11 +107,15 @@ def addDateAndTypeRangeToString(data, searchString):
     dateString=""
     dateStartVal=guessDateFormat(data['start'])
     dateEndVal=guessDateFormat(data['end'])
+    #print("Start date then end date")
+    #print(dateStartVal)
+    #print(dateEndVal)
     if dateStartVal==None and dateEndVal==None:
         return searchString
     #print("Date start and date end" + str(dateStartVal) +  str(dateEndVal))
-    print("Date type:" + str(data['datetype']) + ".")
-    if data['datetype'] == "paid":
+    print("Date type:")
+    print(data['datetypevalue'])
+    if data['datetypevalue'] == "Paid":
         columnName="PaidDateJulian"
     else:
         columnName="DateInJulian"
@@ -122,13 +126,13 @@ def addDateAndTypeRangeToString(data, searchString):
             pass
         else:
             # date before end date
-            dateString=columnName + " < TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721060 "
+            dateString=columnName + " < TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721059.5 "
     else:
         if dateEndVal =="":
-            dateString=columnName + " > TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721060 "
+            dateString=columnName + " > TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721059.5 "
         else:
             # date between beginning and end date
-            dateString=columnName + " BETWEEN TO_DAYS('" + dateStartVal.strftime('%Y-%m-%d') + "' + 1721060 ) AND TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721060  "
+            dateString=columnName + " BETWEEN TO_DAYS('" + dateStartVal.strftime('%Y-%m-%d') + "') + 1721059.5  AND TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721059.5  "
     print("In date and type" + searchString)
     if searchString == "":
         searchString = "WHERE " + dateString
@@ -170,12 +174,12 @@ def addDateRangeToString(data, searchString):
         case 'all':
             dateString = ""
         case 'today':
-            dateString = " DateInJulian = TO_DAYS(date('now'))+1721060 "
+            dateString = " DateInJulian = TO_DAYS(date('now'))+1721059.5 "
             #dateStart.insert(0,datetime.today())
             #dateEnd.insert(0,datetime.today())
         case 'thisweek':
             startOfPeriod, endOfPeriod = getStartAndEndOfPeriod("Week")
-            dateString = " DateInJulian BETWEEN TO_DAYS('" + startOfPeriod.strftime('%Y-%m-%d') + "')  + 1721060 AND TO_DAYS('" + endOfPeriod.strftime('%Y-%m-%d') + "') + 1721060"
+            dateString = " DateInJulian BETWEEN TO_DAYS('" + startOfPeriod.strftime('%Y-%m-%d') + "')  + 1721059.5 AND TO_DAYS('" + endOfPeriod.strftime('%Y-%m-%d') + "') + 1721059.5"
             #dateStart.insert(0,startOfPeriod)
             #dateEnd.insert(0,endOfPeriod)
         case 'thismonth':
@@ -187,7 +191,7 @@ def addDateRangeToString(data, searchString):
             #startOfPeriod, endOfPeriod = getStartAndEndOfPeriod("Year")
             #dateStart.insert(0,startOfPeriod)
             #dateEnd.insert(0,endOfPeriod)
-            dateString = " DateInJulian BETWEEN TO_DAYS(date('now', 'start of year')) + 1721060 AND TO_DAYS(date('now')) + 1721060"
+            dateString = " DateInJulian BETWEEN TO_DAYS(date('now', 'start of year')) + 1721059.5 AND TO_DAYS(date('now')) + 1721059.5"
     if dateString == "":
         pass
     else:
@@ -208,12 +212,12 @@ def updateDatabase():
 
 def guessDateFormat(inputDate):
     date_patterns = ["%d-%m-%Y", "%Y-%m-%d", "%d-%m-%y", "%y-%m-%d", "%d/%m/%y", "%d/%m/%Y"]
-    print(inputDate)
+    #print("In guessDateFormat", + str(inputDate))
     for pattern in date_patterns:
         try:
             return datetime.strptime(inputDate, pattern).date()
         except:
             pass
 
-    print ("Date is not in expected format: %s" + inputDate)
+    print ("Date is not in expected format: %s.  It looks like this:" + inputDate + " to here.")
 

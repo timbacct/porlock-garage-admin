@@ -43,12 +43,12 @@ def getInvoiceHeadersTotal(searchString):
   #print("******   searchString   *****")
   #print(searchString)
   if searchString=="":
-    searchString="WHERE CustomerName LIKE '%Baker%'"
+    searchString=""
   with engine.connect() as conn:
     result = conn.execute(
       text(
-        "SELECT SUM(SummaryPrice) AS TotalExVat, SUM(SummaryTotal) AS TotalIncVAT FROM InvoiceHeader "
-        + str(searchString) + " ORDER BY DateInJulian "))
+        "SELECT CONCAT('£',FORMAT(SUM(SummaryPrice),2,'en_US')) AS TotalExVAT, CONCAT('£',FORMAT(SUM(SummaryTotal),2,'en_US')) AS TotalIncVAT FROM InvoiceHeader "
+        + str(searchString)))
     return result
 
 #def dictify(funcName, searchString, jsonifyFlag):

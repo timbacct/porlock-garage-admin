@@ -8,8 +8,8 @@
                 <td style="white-space:nowrap">{{invoice['MakeModel']}}</td>
                 <td>{{invoice['RegistrationNumber']}}</td>
                 <td>{{invoice['Mileage']}}</td>
-                <td>£{{invoice['SummaryPrice']}}</td>
-                <td>£{{invoice['SummaryTotal']}}</td>
+                <td style="text-align:right" id="summaryprice">£{{invoice['SummaryPrice']}}</td>
+                <td style="text-align:right" id="summarytotal">£{{invoice['SummaryTotal']}}</td>
                 <td>{{invoice['ID']}}</td>
                 <td style="white-space:nowrap">{{invoice['PathName']}}</td>
                 <td style="white-space:nowrap">{{invoice['FileName']}}</td>
