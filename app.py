@@ -48,8 +48,8 @@ def homepage():
                            invoiceheaders=invoiceHeaders,
                            totals=totals)
   except:
-    data = "No search criteria"
-    return render_template('home.html', data=data)
+    message = "*** Message in except clause of homepage in App.py - No search criteria ***"
+    return render_template('home.html', data=data, message=message)
 
 
 @app.route("/invoice/<ID>")

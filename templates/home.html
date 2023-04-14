@@ -43,12 +43,59 @@
       function showAlert(alertText){
         alert(alertText);
       }
+
+      window.onload = function() {
+        var all = document.getElementById('all');
+        var today = document.getElementById('today');
+        var thisweek = document.getElementById('thisweek');
+        var thismonth = document.getElementById('thismonth');
+        var thisyear = document.getElementById('thisyear');
       
+        all.onclick = allhandler;
+        today.onclick = todayhandler;
+        thisweek.onclick = thisweekhandler;
+        thismonth.onclick = thismonthhandler;
+        thisyear.onclick = thisyearhandler;
+      }
+
+      function allhandler() {
+        document.getElementById("start").value = "";
+        document.getElementById("end").value = "";
+        alert('clicked');
+      }
       
-      /* const btn = document.querySelector('#btn');        
+      function todayhandler() {
+        const date = new Date().toLocaleDateString();
+        let currentDate = '${day}-${month}-${year}';
+        document.getElementById("start").value = date;
+        document.getElementById("end").value = date;
+        alert('clicked');
+      }
+
+      function thisweekhandler() {
+        document.getElementById("start").value = "";
+        document.getElementById("end").value = "";
+        alert('clicked');
+      }
+
+      function thismonthhandler() {
+        document.getElementById("start").value = "";
+        document.getElementById("end").value = "";
+        alert('clicked');
+      }
+
+      function thisyearhandler() {
+        document.getElementById("start").value = "";
+        document.getElementById("end").value = "";
+        alert('clicked');
+      }
+
+      
+      /*const btn = document.querySelector('#btn');        
       const radioButtons = document.querySelectorAll('input[name="period"]');
       btn.addEventListener("click", () => {
           showAlert("Listener triggered");
+          document.getElementById("customername").value = "Hello!";
           let selectedPeriod;
           for (const radioButton of radioButtons) {
               if (radioButton.checked) {
@@ -68,7 +115,9 @@
     </script>
     {% include 'navbar.html' %}
     <img class="mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
-
+    {{message}}<br>
+    {{searchstring}}<br>
+    {{data}}
     <table class="table">
       <tr>
         <th>Search Criteria</th>
@@ -78,35 +127,64 @@
         <td>
     
           <form action="/" method="get" id="filterform">
-            <br>
-            <label id="customernamelabel" for="customername">Customer Name</label><br>
-            <input type="text" id="customername" class="form-control me-2" name="customername" value={{data['customername']}}>
-            <label for="registrationnumber">Registration Number</label><br>
-            <input type="text" id="registrationnumber" class="form-control me-2" name="registrationnumber" value={{data['registrationnumber']}}>
-            <label for="datein">Date in</label><br>
-            <input type="text" id="datein" class="form-control me-2" name="datein" value={{data['datein']}}>
-            <label for="makemodel">Make/model</label><br>
-            <input type="text" id="makemodel" class="form-control me-2" name="makemodel" value={{data['makemodel']}}>
-            <label for="phonenumber">Phone number</label><br>
-            <input type="text" id="phonenumber" class="form-control me-2" name="phonenumber" value={{data['phonenumber']}}><br>
+            <div class="row g-2 mb-2">
+              <div class="col-sm">
+                <label id="customernamelabel" for="customername" class="col-form-label-sm">Customer Name</label>
+              </div>
+              <div class="col-sm">
+                <input type="text" id="customername" class="form-control" name="customername" value={{data['customername']}}>
+              </div>
+            </div>
+            <div class="row g-2 mb-2"">
+              <div class="col-sm">
+                <label for="registrationnumber" class="col-form-label-sm">Reg Number</label>
+              </div>
+              <div class="col-sm">
+                <input type="text" id="registrationnumber" class="form-control" name="registrationnumber" value={{data['registrationnumber']}}>
+              </div>
+            </div>
+            <div class="row g-2 mb-2"">
+              <div class="col-sm">
+                <label for="datein" class="col-form-label-sm">Date in</label>
+              </div>
+              <div class="col-sm">
+                <input type="text" id="datein" class="form-control" name="datein" value={{data['datein']}}>
+              </div>
+            </div>
+            <div class="row g-2 mb-2"">
+              <div class="col-sm">
+                <label for="makemodel" class="col-form-label-sm">Make/model</label>
+              </div>
+              <div class="col-sm">
+                <input type="text" id="makemodel" class="form-control" name="makemodel" value={{data['makemodel']}}>
+              </div>
+            </div>
+            <div class="row g-2 mb-2"">
+              <div class="col-sm">
+                <label for="phonenumber" class="col-form-label-sm">Phone number</label>
+              </div>
+              <div class="col-sm">
+                <input type="text" id="phonenumber" class="form-control" name="phonenumber" value={{data['phonenumber']}}>
+              </div>
+            </div>
 
             <table class="table table-bordered">
               <tr>
-                <td>
-                  <input type="radio" id="all" name="period" value="all" {% if data['period']=="all":  %} checked="checked" {% endif %}>
+                <td style="width:5%">
+                  <input class="form-check-input" type="radio" id="all" name="period" value="all" {% if data['period']=="all":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
-                  <label for="all">All</label><br>
+                  <label class="form-check-label" for="all">All</label><br>
                 </td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="today" name="period" value="today" {% if data['period']=="today" or data["period"]=="":  %} checked="checked"checked {% endif %}>
+                  <input class="form-check-input" type="radio" id="today" name="period" value="today"  {% if data['period']=="today" or data["period"]=="":  %} checked="checked"checked {% endif %}>
                 </td>
                 <td>
-                  <label for="today">Today</label>           
+                  <label class="form-check-label" for="today">Today</label>           
                 </td>
                 <td>
                   <button type="button">+</button>
@@ -117,24 +195,10 @@
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="thisweek" name="period" value="thisweek" {% if data['period']=="thisweek":  %} checked="checked" {% endif %}>
+                  <input class="form-check-input" type="radio" id="thisweek" name="period" value="thisweek" {% if data['period']=="thisweek":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
-                  <label for="thisweek">This Week</label>
-                </td>
-                <td>
-                  <button type="button">+</button>
-                </td>
-                <td>
-                  <button type="button">-</button><br>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="radio" id="thismonth" name="period" value="thismonth" {% if data['period']=="thismonth":  %} checked="checked" {% endif %}>
-                </td>
-                <td>
-                  <label for="thismonth">This Month</label>
+                  <label class="form-check-label" for="thisweek">This Week</label>
                 </td>
                 <td>
                   <button type="button">+</button>
@@ -145,10 +209,24 @@
               </tr>
               <tr>
                 <td>
-                  <input type="radio" id="thisyear" name="period" value="thisyear" {% if data['period']=="thisyear":  %} checked="checked" {% endif %}>
+                  <input class="form-check-input" type="radio" id="thismonth" name="period" value="thismonth" {% if data['period']=="thismonth":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
-                  <label for="thisyear">This Year</label><br><br>
+                  <label class="form-check-label" for="thismonth">This Month</label>
+                </td>
+                <td>
+                  <button type="button">+</button>
+                </td>
+                <td>
+                  <button type="button">-</button><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input class="form-check-input" type="radio" id="thisyear" name="period" value="thisyear" {% if data['period']=="thisyear":  %} checked="checked" {% endif %}>
+                </td>
+                <td>
+                  <label class="form-check-label" for="thisyear">This Year</label><br><br>
                 </td>
                 <td>
                   <button type="button">+</button>
@@ -171,30 +249,35 @@
                   <label>Date type</label>
                 </td>
                 <td>
-                  <input type="radio" id="In" name="datetype" value="in" class="radio">
-                  <label for="In">In</label>
-                  <input type="radio" id="Paid" name="datetype" value="paid" class="radio">
-                 <label for="Paid">Paid</label><br><br>
-                  </td>
+                  <div>
+                    <p>In</p>
+                  </div>  
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="datetype" name="datetype" value={{data['datetype']}}>
+                  </div>  
+                  <div>
+                    <p>Paid</p>
+                  </div>
+                </td>
               </tr>
               <tr>
-                <td>
-                  <input type="checkbox" id="estimates" name="Estimates" value="estimates">
-                  <label for="estimates"> Estimates</label>
+                <td class="justify-content-between">
+                  <input class="form-check-input" type="checkbox" id="estimates" name="Estimates" value="estimates">
+                  <label class="form-check-label" for="estimates"> Estimates</label>
                 </td>
-                <td>
-                  <input type="checkbox" id="invoices" name="invoices" value="invoices">
-                  <label for="invoices"> Invoices</label><br><br>
+                <td class="justify-content-between">
+                  <input class="form-check-input" type="checkbox" id="invoices" name="invoices" value="invoices">
+                  <label class="form-check-label" for="invoices"> Invoices</label>
                 </td>
               </tr>
               <tr>
                 <td>
                   <label for="start">Start</label><br>
-                  <input type="text" id="start" class="form-control me-2" name="start"><br>
+                  <input type="text" id="start" class="form-control me-2" name="start" value={{data['start']}}><br>
                 </td>
                 <td>
                   <label for="end">End</label><br>
-                  <input type="text" id="end" class="form-control me-2" name="end" class="mb-2"><br>
+                  <input type="text" id="end" class="form-control me-2" name="end" class="mb-2" value={{data['start']}}><br>
                 </td>
               </tr>
               <tr>

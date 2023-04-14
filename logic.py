@@ -27,7 +27,12 @@ def buildSearchString(data):
 
     customerNameVal = data['customername']
     registrationNumberVal = data['registrationnumber']
-    dateInVal = data['datein']
+    dateInStrVal = data['datein']
+    if dateInStrVal=="":
+      dateInVal=None
+    else:
+      dateInVal = guessDateFormat(dateInStrVal)
+    
     makeModelVal = data['makemodel']
     phoneNumberVal = data['phonenumber']
     
@@ -35,7 +40,7 @@ def buildSearchString(data):
         searchString = addSearchCriterionToString(searchString, "CustomerName", str(customerNameVal))
     if registrationNumberVal != "":
         searchString = addSearchCriterionToString(searchString, "RegistrationNumber", str(registrationNumberVal))
-    if dateInVal != "":
+    if dateInVal != None:
         searchString = addSearchCriterionToString(searchString, "DateIn", str(dateInVal))
     if makeModelVal != "":
         searchString = addSearchCriterionToString(searchString, "MakeModel", str(makeModelVal))
@@ -100,15 +105,17 @@ def getStartAndEndOfPeriod(period):
 
 def addDateAndTypeRangeToString(data, searchString):
     dateString=""
-    dateStartVal = guessDateFormat(data['start'])
+    dateStartVal=guessDateFormat(data['start'])
     dateEndVal=guessDateFormat(data['end'])
     if dateStartVal==None and dateEndVal==None:
         return searchString
-    print(str(dateStartVal) +  str(dateEndVal))
+    #print("Date start and date end" + str(dateStartVal) +  str(dateEndVal))
+    print("Date type:" + str(data['datetype']) + ".")
     if data['datetype'] == "paid":
         columnName="PaidDateJulian"
     else:
         columnName="DateInJulian"
+    print("got to here")
     if data['start'] =="":
         if data['end'] =="":
             # no range - drop out
@@ -117,7 +124,7 @@ def addDateAndTypeRangeToString(data, searchString):
             # date before end date
             dateString=columnName + " < TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721060 "
     else:
-        if dateEnd =="":
+        if dateEndVal =="":
             dateString=columnName + " > TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721060 "
         else:
             # date between beginning and end date
@@ -200,7 +207,7 @@ def updateDatabase():
 
 
 def guessDateFormat(inputDate):
-    date_patterns = ["%d-%m-%Y", "%Y-%m-%d", "%d/%m/%y", "%d/%m/%Y"]
+    date_patterns = ["%d-%m-%Y", "%Y-%m-%d", "%d-%m-%y", "%y-%m-%d", "%d/%m/%y", "%d/%m/%Y"]
     print(inputDate)
     for pattern in date_patterns:
         try:
