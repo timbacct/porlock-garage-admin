@@ -3,5 +3,4 @@ gunicorn
 sqlalchemy
 pymysql
 python-dateutil
-datetime
-dateutil
+datetime'
