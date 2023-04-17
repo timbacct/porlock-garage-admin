@@ -4,4 +4,4 @@ sqlalchemy
 pymysql
 python-dateutil
 datetime
-dateutil.relativedelta
+dateutil
