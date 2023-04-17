@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
-from buttonhandlers import *
-from database import getInvoiceHeaders, getInvoiceHeader, getInvoiceHeadersTotal, getParts, getWork
 from logic import *
+from buttonhandlers import *
+from database import getInvoiceHeaders, getInvoiceHeader, getInvoiceHeadersTotal, getParts, getWork, getLastUpdate
+
 
 app = Flask(__name__)
 
@@ -42,11 +43,17 @@ def homepage():
     searchString = buildSearchString(data)
     invoiceHeaders = getInvoiceHeaders(searchString)
     totals = getInvoiceHeadersTotal(searchString)
+    print("here")
+    datelastupdated = getLastUpdate()
+    #print("*** date last updated ***")
+    #print(datelastupdated[1])
     return render_template('home.html',
                            searchstring=searchString,
                            data=data,
                            invoiceheaders=invoiceHeaders,
-                           totals=totals)
+                           totals=totals,
+                           datelastupdated=datelastupdated
+                          )
   except:
     message = "*** Message in except clause of homepage in App.py - No search criteria ***"
     return render_template('home.html', data=data, message=message)

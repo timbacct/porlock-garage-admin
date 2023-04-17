@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, text
 #from flask import jsonify
 import os
+from datetime import datetime
 
 db_connection_string = os.environ['DB_CONNECTION_STRING']
 
@@ -50,6 +51,21 @@ def getInvoiceHeadersTotal(searchString):
         "SELECT CONCAT('£',FORMAT(SUM(SummaryPrice),2,'en_US')) AS TotalExVAT, CONCAT('£',FORMAT(SUM(SummaryTotal),2,'en_US')) AS TotalIncVAT FROM InvoiceHeader "
         + str(searchString)))
     return result
+
+def getLastUpdate():
+ 
+  with engine.connect() as conn:
+    result = conn.execute(
+      text("SELECT MAX(DateInJulian) AS DateJulianLastUpdated, MAX(DateIn) AS DateLastUpdated FROM InvoiceHeader"))
+
+    for row in result:
+      datelastupdated = row[1]
+      print(datelastupdated)
+
+      datelastupdated = datelastupdated.strftime('%d/%m/%Y')
+      print(datelastupdated)
+  return datelastupdated
+
 
 #def dictify(funcName, searchString, jsonifyFlag):
 #  match funcName:
@@ -122,11 +138,6 @@ def deleteInvoice(selection):
       print(repr(e))
 
 
-def getLastUpdate():
-  with engine.connect() as conn:
-    result = conn.execute(
-      text("SELECT MAX(date(DateInJulian)) FROM InvoiceHeader"))
-  return result
 
 
 def saveInvoiceHeaderToDB(

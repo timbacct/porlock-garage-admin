@@ -1,4 +1,4 @@
-from database import deleteInvoice, getLastUpdate
+from database import deleteInvoice
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
@@ -15,11 +15,6 @@ def viewInvoiceHeaders(data):
     
     return searchString
 
-def getDateLastUpdated():
-    #dateLastUpdated.delete(0,END)
-    displayDate=guessDateFormat(getLastUpdate())
-    #print (displayDate.strftime("%d/%m/%Y"))
-    return displayDate
 
 def buildSearchString(data):
     searchString=""
@@ -49,7 +44,7 @@ def buildSearchString(data):
     #obsolete searchString = addDateRangeToString(data, searchString)
     searchString = addDateAndTypeRangeToString(data, searchString)
     #searchString = addCheckbuttonCriteriaToString(data, searchString)
-    print(searchString)
+    #print(searchString)
     return searchString
 
 def addSearchCriterionToString(searchString, column, value):
@@ -113,13 +108,13 @@ def addDateAndTypeRangeToString(data, searchString):
     if dateStartVal==None and dateEndVal==None:
         return searchString
     #print("Date start and date end" + str(dateStartVal) +  str(dateEndVal))
-    print("Date type:")
-    print(data['datetypevalue'])
+    #print("Date type:")
+    #print(data['datetypevalue'])
     if data['datetypevalue'] == "Paid":
         columnName="PaidDateJulian"
     else:
         columnName="DateInJulian"
-    print("got to here")
+    #print("got to here")
     if data['start'] =="":
         if data['end'] =="":
             # no range - drop out
@@ -133,7 +128,7 @@ def addDateAndTypeRangeToString(data, searchString):
         else:
             # date between beginning and end date
             dateString=columnName + " BETWEEN TO_DAYS('" + dateStartVal.strftime('%Y-%m-%d') + "') + 1721059.5  AND TO_DAYS('" + dateEndVal.strftime('%Y-%m-%d') + "') + 1721059.5  "
-    print("In date and type" + searchString)
+    #print("In date and type" + searchString)
     if searchString == "":
         searchString = "WHERE " + dateString
     else:

@@ -21,7 +21,16 @@
       button {
         class="btn btn-outline-success";
       }
+      
+      @media print {
+        
+        .noprint { display:none; }
+        
+        @page {size: A4 landscape; }
 
+        transform: scale(1.2)
+      }
+      
       
     </style>
 
@@ -70,6 +79,15 @@
         thisweek.onclick = thisweekhandler;
         thismonth.onclick = thismonthhandler;
         thisyear.onclick = thisyearhandler;
+
+        dayearlier.addEventListener("click", () => { newdate("day", "minus") });
+        daylater.addEventListener("click", () => { newdate("day", "plus") });
+        weekearlier.addEventListener("click", () => { newdate("week", "minus") });
+        weeklater.addEventListener("click", () => { newdate("week", "plus") });
+        monthearlier.addEventListener("click", () => { newdate("month", "minus") });
+        monthlater.addEventListener("click", () => { newdate("month", "plus") });
+        yearearlier.addEventListener("click", () => { newdate("year", "minus") });
+        yearlater.addEventListener("click", () => { newdate("year", "plus") });
         //alert("got here");
         //sumTableExVAT();
         //sumTableIncVAT();
@@ -107,7 +125,6 @@
         //alert('clicked');
       }
 
-
       function thisyearhandler() {
         const currentYear = new Date().getFullYear();
         const firstDay = new Date(currentYear, 0, 1);
@@ -117,36 +134,104 @@
         //alert('clicked');
       }
 
-      /*function sumTableExVAT() {
-        let rows = document.getElementById("invoiceheadertable").getElementById("summaryprice");
-        let sum = 0;
-
-        //start with one to skip first row, which is column headers
-        for (let i=1; i < rows.length; i++) {
-          sum += parseFloat(rows[i].childNodes[2].firstChild.data);
-        }
-        document.getElementById("totalExVAT").value=sum;
-       
+      function isoDate(datestr) {
+        //alert(datestr);
+        dateisostr = datestr.substring(6) + "-" + datestr.substring(3,5) + "-" + datestr.substring(0,2);
+        //alert(date);
+        return dateisostr;
       }
 
-      function sumTableIncVAT() {
-        let rows = document.getElementById("invoiceheadertable").getElementById("summarytotal");
-        let sum = 0;
+      function monthcalc(inputdate, plusminus) {
+        // accepts date in string format dd/mm/yyyy
+        //plusminus is plus to add a month and minus to subtract a month
+        month = parseInt(inputdate.substring(3,5));
+        month=month+1;
+        if (month==13) {
+          month = 1;
+        }
+        outputdate=inputdate.substring(0,2) + "/" + month.toString() + "/"+ inputdate.substring(6);
+        return outputdate;
+      }
 
-        //start with one to skip first row, which is column headers
-        for (leti=1; i < rows.length; i++)
-          sum += parseFloat(rows[i].childNodes[2].firstChild.data);
+      function yearcalc(inputdate, plusminus) {
+        // accepts date in string format dd/mm/yyyy
+        //plusminus is plus to add a month and minus to subtract a month
+        year = parseInt(inputdate.substring(6));
+        if (plusminus=="minus") {
+          year=year-1;
+        }
+        else {
+          year=year+1;
+        }
+        outputdate=inputdate.substring(0,2) + "/" + inputdate.substring(3,5) + "/" + year;
+        return outputdate;
+      }
+      
+      function newdate(period, plusminus) {
+        //alert(period + plusminus);
+        date = new Date();
+        var start = document.getElementById("start");
+        var end = document.getElementById("end");  
+        if (period=="day" || period=="week") {
+          if (period=="day") {
+             milliseconds = 60*60*24*1000; // one day in milliseconds
+          }
+          if (period=="week") {
+             milliseconds = 7*60*60*24*1000; // one week in milliseconds
+          }
+
+          startdate = Date.parse(isoDate(start.value));
+          enddate = Date.parse(isoDate(end.value));
+          if (plusminus=="minus") {
+          //  alert(plusminus);
+            var newstartdate = new Date(startdate.valueOf() - milliseconds); 
+            var newenddate = new Date(enddate.valueOf() - milliseconds);
+          }
+          else {
+            var newstartdate = new Date(startdate.valueOf() + milliseconds); 
+            var newenddate = new Date(enddate.valueOf() + milliseconds);
+          }
+        }
         
-        document.getElementById("totalIncVAT").value=sum;
+        if (period=="month")  {
+          newstartdate = monthcalc(start.value, plusminus);
+          newenddate = monthcalc(end.value, plusminus);
+        }
+        if (period=="year")  {
+          newstartdate = yearcalc(start.value, plusminus);
+          newenddate = yearcalc(end.value, plusminus);
+        }
+        start.value=newstartdate.toLocaleDateString();
+        end.value=newenddate.toLocaleDateString(); 
+      }
+
+      
+      
+      /*function earlier(period) {
+        var start = document.getElementById("start");
+        var end = document.getElementById("end");
+        
+          var currentvalue = start.value;
+          var currentvalueformatted = currentvalue.substring(6) + "/" + currentvalue.substring(3,5) + "/" + currentvalue.substring(0,2);
+          const currentvaluedt = Date.parse(currentvalueformatted);
+          alert(currentvaluedt);
+          //currentvaluedt.setDate(currentvaluedt.getDate());
+          alert(currentvaluedt);
+          //start.value = newvalue;
+          //end.value = newvalue;
+          }
+
       } */
+
+
 
     </script>
     {% include 'navbar.html' %}
-    <img class="mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
-    {{message}}<br>
-    {{searchstring}}<br>
-    {{data}}<br>
-    {{totals}}
+    
+    <img class="noprint" mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
+  
+
+    Date {{datelastupdated}} Date
     <table class="table">
       <tr>
         <th>Search Criteria</th>
@@ -157,7 +242,7 @@
     
           <form action="/" method="get" id="filterform">
             <div class="row g-2 mb-2">
-              <div class="col-sm">
+              <div class="col-sm" width="200px">
                 <label id="customernamelabel" for="customername" class="col-form-label-sm">Customer Name</label>
               </div>
               <div class="col-sm">
@@ -209,45 +294,45 @@
                 <td></td>
               </tr>
               <tr>
-                <td>
+                <td style="width:10%">
                   <input class="form-check-input" type="radio" id="today" name="period" value="today"  {% if data['period']=="today" or data["period"]=="":  %} checked="checked"checked {% endif %}>
                 </td>
                 <td>
                   <label class="form-check-label" for="today">Today</label>           
                 </td>
-                <td>
-                  <button type="button">-</button>
+                <td align="center">
+                  <input id="dayearlier" type="button" value="-"></input>
                 </td>
-                <td>
-                  <button type="button">+</button><br>                      
+                <td align="center">
+                  <input id="daylater" type="button" value="+"></input><br>                      
                 </td>
               </tr>
               <tr>
-                <td>
+                <td style="width:10%">
                   <input class="form-check-input" type="radio" id="thisweek" name="period" value="thisweek" {% if data['period']=="thisweek":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
                   <label class="form-check-label" for="thisweek">This Week</label>
                 </td>
-                <td>
-                  <button type="button">-</button>
+                <td align="center">
+                  <input id="weekearlier" type="button" value="-"></input>
                 </td>
-                <td>
-                  <button type="button">+</button><br>
+                <td align="center">
+                  <input id="weeklater" type="button" value="+"></input><br>
                 </td>
               </tr>
               <tr>
-                <td>
+                <td style="width:10%">
                   <input class="form-check-input" type="radio" id="thismonth" name="period" value="thismonth" {% if data['period']=="thismonth":  %} checked="checked" {% endif %}>
                 </td>
                 <td>
                   <label class="form-check-label" for="thismonth">This Month</label>
                 </td>
-                <td>
-                  <button type="button">-</button>
+                <td align="center">
+                  <input id="monthearlier" type="button" value="-"></input>
                 </td>
-                <td>
-                  <button type="button">+</button><br>
+                <td align="center">
+                  <input id="monthlater" type="button" value="+"></input><br>
                 </td>
               </tr>
               <tr>
@@ -257,40 +342,40 @@
                 <td>
                   <label class="form-check-label" for="thisyear">This Year</label><br><br>
                 </td>
-                <td>
-                  <button type="button">-</button>
+                <td align="center">
+                  <input id="yearearlier" type="button" value="-"></input>
                 </td>
-                <td>
-                  <button type="button">+</button><br>
+                <td align="center">
+                  <input id="yearlater" type="button" value="+"></input><br>
                 </td>
               </tr>
             </table>
             <table class="table table-bordered">
               <tr>
-                <td>
+                <td style="text-align:center">
                   <label>Date type</label>
+                </td>
+                <td style="text-align:center">
                   <input type="button" id="datetype" name="datetype" value="{% if data['datetypevalue']=="" or data['datetypevalue']=="In":  %}In{% else %}Paid{% endif %}" class="btn btn-outline-dark" onclick="toggleDateType()">
                   <input type="hidden" id="datetypevalue" name="datetypevalue" value="{% if data['datetypevalue']=="":  %}In{% else %}Paid{% endif %}">
                 </td>
-                <td>
-                </td>
               </tr>
               <tr>
-                <td class="justify-content-between">
+                <td  style="text-align:center" class="justify-content-between">
                   <input class="form-check-input" type="checkbox" id="estimates" name="estimates" value="estimates">
                   <label class="form-check-label" for="estimates"> Estimates</label>
                 </td>
-                <td class="justify-content-between">
+                <td  style="text-align:center" class="justify-content-between">
                   <input class="form-check-input" type="checkbox" id="invoices" name="invoices" value="invoices">
                   <label class="form-check-label" for="invoices"> Invoices</label>
                 </td>
               </tr>
               <tr>
-                <td>
+                <td style="text-align:center">
                   <label for="start">Start</label><br>
                   <input type="text" id="start" class="form-control-sm me-2" name="start" value={{data['start']}}><br>
                 </td>
-                <td>
+                <td style="text-align:center">
                   <label for="end">End</label><br>
                   <input type="text" id="end" class="form-control-sm me-2" name="end" class="mb-2" value={{data['end']}}><br>
                 </td>
@@ -304,16 +389,28 @@
                 </td>
               </tr>
             </table>
-            <table style="width:300px; border:1px solid black";>
+            <table style="margin:auto; width:300px; border:1px solid black";>
               <tr>
-                <td style="height:40px;">
-                  <label>Date Last Updated: </label>
-                    {{data["dateLastUpdated"]}}
+                <td  style="text-align:center" style="height:40px;">
+                  <label>Date Last Updated:  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table>
+                    <tr>
+                      <td width="40%"></td>
+                      <td width="33%"  style="text-align:center">
+                        <br>
+                        <p class="table-danger border border-color:red" style="color:red">{{datelastupdated}}</p></td>
+                      <td width="27%"></td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
               <tr>
                 <td align="center">
-                  <input type="submit" value="Update now" class="btn btn-outline-danger btn-lg mt-3 mb-3">
+                  <input type="submit" value="Update now" class="btn btn-outline-danger btn-lg mt-2 mb-3">
                 </td>
               </tr>
             </table>

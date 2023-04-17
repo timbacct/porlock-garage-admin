@@ -24,6 +24,20 @@
       button {
         class="btn btn-outline-success";
       }
+      @media print {
+        .noprint{
+          display:none;
+        }
+        @page {
+          size: A4 landscape;  
+          margin: 0;
+        } //margin 0 gets rid of headers and footers
+
+        body { margin: 2rem; } //doesn't seem to work
+
+        transform: scale(1.25,1.25) //doesn't seem to work
+        
+      }
 
       p.p1 {margin: 0.0px 4.0px 0.0px 4.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
       p.p2 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 18.7px 'Arial Black'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
@@ -56,7 +70,8 @@
       td.td17 {width: 125.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td18 {width: 98.7px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td181 {width: 98.7px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td19 {width: 92.0px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td19 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td19a {width: 92.0px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td20 {width: 337.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td21 {width: 117.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td22 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
@@ -66,9 +81,9 @@
       td.td26 {width: 124.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td27 {width: 98.2px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td28 {width: 91.5px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td29 {width: 336.8px; border-style: solid; border-width: 1.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td30 {width: 92.0px; border-style: solid; border-width: 1.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td31 {width: 117.3px; border-style: solid; border-width: 1.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td29 {width: 336.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td30 {width: 92.0px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td31 {width: 117.3px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td32 {width: 91.0px; border-style: solid; border-width: 1.0px 1.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
       td.td33 {width: 275.5px}
       td.td34 {width: 158.2px; border-style: solid; border-width: 0.0px 0.5px 0.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
@@ -79,10 +94,10 @@
       td.td39 {width: 124.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td40 {width: 428.8px}
       td.td41 {width: 546.2px}
-      td.td42 {width: 336.8px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td43 {width: 92.0px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td44 {width: 117.3px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
-      td.td45 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td42 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td43 {width: 92.0px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td44 {width: 117.3px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td45 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td46 {width: 91.0px; border-style: solid; border-width: 0.5px 1.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
       td.td47 {width: 91.5px; border-style: solid; border-width: 0.5px 1.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
       td.td48 {width: 91.5px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
@@ -109,7 +124,7 @@
   </head>
   <body style="padding-left:20px">
     {% include 'navbar.html' %}
-    <img class="mb-2 mt-2  img-fluid max-width: 100%  height: auto" src="/static/GarageBanner.png" alt="Central Garage Banner">
+    <img class="noprint mb-2 mt-2  img-fluid max-width: 100%  height: auto" src="/static/GarageBanner.png" alt="Central Garage Banner">
 
     <table width="1389.3" cellspacing="0" cellpadding="0" class="t1">
       <tbody>
@@ -371,7 +386,7 @@
         </tr>
         <tr>
           <td valign="bottom" class="td16">
-            <p class="p4"><span class="s1"><i>{{data["MakeModel2"]}}</i></span></p>
+            <p class="p4"><span class="s1"><i>{% if data[MakeModel2] != Null %} {{data["MakeModel2"]}} {% endif %}</i></span></p>
           </td>
           <td valign="bottom" class="td17">
             <p class="p4"><span class="s1"><i> </i></span></p>
@@ -379,13 +394,13 @@
           <td valign="bottom" class="td181">
             <p class="p4"><span class="s1"><i> </i></span></p>
           </td>
-          <td valign="bottom" class="td19">
+          <td valign="bottom" class="td19a">
             <p class="p1"><span class="s1"> </span></p>
           </td>
           <td valign="bottom" class="td20">
             <p class="p9"><span class="s1"><b> </b></span></p>
           </td>
-          <td valign="bottom" class="td19">
+          <td valign="bottom" class="td19a">
             <p class="p1"><span class="s1"> </span></p>
           </td>
           <td valign="bottom" class="td21">
@@ -466,14 +481,14 @@
             <p class="p1"><span class="s1">{{parts[i]['PartsDescription']}}</span></p>
           </td>
           <td valign="bottom" class="td22">
-            <p class="p1"><span class="s1">{{parts[i]['PartsPrice']}}<span class="Apple-converted-space"> </span></span></p>
+            <p class="p1" align="right"><span class="s1">{% if parts[i]['PartsPrice'] != "" and parts[i]['PartsPrice'] != "Price" %} {{"£%.2f"|format(parts[i]['PartsPrice']|float)}} {% endif %}<span class="Apple-converted-space"> </span></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td36">
             <p class="p1"><span class="s1">{{work[i]['WorkDescription']}}</span></p>
           </td>
 
           <td valign="bottom" class="td37">
-            <p class="p1" align="right"><span class="s1">{% if work[i]['WorkPrice'] != "" and work[i]['WorkPrice'] != "Price" %} {{ "£%.2f"|format(work[i]['WorkPrice']|float)}} {% endif %}</span></p>
+            <p class="p1" align="right"><span class="s1">{% if work[i]['WorkPrice'] != "" and work[i]['WorkPrice'] != "Price" and work[i]['WorkDescription'] != " Price Price" %} {{ "£%.2f"|format(work[i]['WorkPrice']|float)}} {% endif %}</span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
@@ -504,7 +519,7 @@
             <p class="p1"><span class="s1"><b>MOT</b></span></p>
           </td>
           <td valign="bottom" class="td46">
-            <p class="p1"><span class="s1">{{data['MOTValue']}}<span class="Apple-converted-space"> </span></span></p>
+            <p class="p1" align="right"><span class="s1">{{"£%.2f"|format(data['MOTValue']|float)}}<span class="Apple-converted-space"> </span></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
@@ -533,7 +548,7 @@
             <p class="p1"><span class="s1"><b>Labour</b></span></p>
           </td>
           <td valign="bottom" class="td46">
-            <p class="p1"><span class="s1">{{data['ListLabourTotal']}}<span class="Apple-converted-space"> </span></span></p>
+            <p class="p1" align="right"><span class="s1">{{"£%.2f"|format(data['ListLabourTotal']|float)}}<span class="Apple-converted-space"> </span></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
@@ -614,13 +629,13 @@
             <p class="p1"><span class="s1"><b>Labour</b></span></p>
           </td>
           <td valign="bottom" class="td53">
-            <p class="p1"><span class="s1"><b>{{data['SummaryLabour']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryLabour']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td54">
-            <p class="p1"><span class="s1"><b>{{data['SummaryLabourVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryLabourVAT']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td55">
-            <p class="p1"><span class="s1"><b>{{data['SummaryLabourTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryLabourTotal']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
@@ -643,13 +658,13 @@
             <p class="p1"><span class="s1"><b>MOT</b></span></p>
           </td>
           <td valign="bottom" class="td53">
-            <p class="p1"><span class="s1"><b>{{data['SummaryMOT']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryMOT']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td54">
-            <p class="p1"><span class="s1"><b>{{data['SummaryMOTVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryMOTVAT']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td55">
-            <p class="p1"><span class="s1"><b>{{data['SummaryTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryTotal']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
@@ -672,13 +687,13 @@
             <p class="p1"><span class="s1"><b>Parts/accessories</b></span></p>
           </td>
           <td valign="bottom" class="td53">
-            <p class="p1"><span class="s1"><b>{{data['SummaryParts']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryParts']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td54">
-            <p class="p1"><span class="s1"><b>{{data['SummaryPartsVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryPartsVAT']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td55">
-            <p class="p1"><span class="s1"><b>{{data['SummaryPartsTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryPartsTotal']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
@@ -727,19 +742,19 @@
             <p class="p1"><span class="s1"><b>Total Parts</b></span></p>
           </td>
           <td valign="bottom" class="td61">
-            <p class="p1"><span class="s1"><b>{{data['SummaryPartsTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryPartsTotal']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td62">
             <p class="p1"><span class="s1"><b>TOTAL AMOUNT DUE</b></span></p>
           </td>
           <td valign="bottom" class="td63">
-            <p class="p1"><span class="s1"><b>{{data['SummaryPrice']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£{:,.2f}".format(data['SummaryPrice']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td64">
-            <p class="p1"><span class="s1"><b>{{data['SummaryVAT']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£%.2f"|format(data['SummaryVAT']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td valign="bottom" class="td65">
-            <p class="p1"><span class="s1"><b> £ {{data['SummaryTotal']}}<span class="Apple-converted-space"> </span></b></span></p>
+            <p class="p1" align="right"><span class="s1"><b>{{"£{:,.2f}".format(data['SummaryTotal']|float)}}<span class="Apple-converted-space"> </span></b></span></p>
           </td>
           <td colspan="3" valign="bottom" class="td33">
             <p class="p3"><span class="s1"></span><br></p>
