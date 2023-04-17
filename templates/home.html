@@ -145,11 +145,25 @@
         // accepts date in string format dd/mm/yyyy
         //plusminus is plus to add a month and minus to subtract a month
         month = parseInt(inputdate.substring(3,5));
-        month=month+1;
-        if (month==13) {
-          month = 1;
+        if (plusminus=="minus") {
+          month=month-1;
+          if (month==0) {
+            month = 12;
+          }          
         }
-        outputdate=inputdate.substring(0,2) + "/" + month.toString() + "/"+ inputdate.substring(6);
+        else {
+          month=month+1;
+          if (month==13) {
+            month = 1;
+          }
+        }
+        if (month < 9) {
+          monthstr = "0" + month.toString();
+        }
+        else {
+          monthstr = month.toString();
+        }
+        outputdate=inputdate.substring(0,2) + "/" + monthstr + "/"+ inputdate.substring(6);
         return outputdate;
       }
 
@@ -168,7 +182,6 @@
       }
       
       function newdate(period, plusminus) {
-        //alert(period + plusminus);
         date = new Date();
         var start = document.getElementById("start");
         var end = document.getElementById("end");  
@@ -183,7 +196,6 @@
           startdate = Date.parse(isoDate(start.value));
           enddate = Date.parse(isoDate(end.value));
           if (plusminus=="minus") {
-          //  alert(plusminus);
             var newstartdate = new Date(startdate.valueOf() - milliseconds); 
             var newenddate = new Date(enddate.valueOf() - milliseconds);
           }
@@ -191,47 +203,26 @@
             var newstartdate = new Date(startdate.valueOf() + milliseconds); 
             var newenddate = new Date(enddate.valueOf() + milliseconds);
           }
+          start.value=newstartdate.toLocaleDateString();
+          end.value=newenddate.toLocaleDateString();
         }
         
         if (period=="month")  {
-          newstartdate = monthcalc(start.value, plusminus);
-          newenddate = monthcalc(end.value, plusminus);
+          start.value = monthcalc(start.value, plusminus);
+          end.value = monthcalc(end.value, plusminus);
         }
         if (period=="year")  {
-          newstartdate = yearcalc(start.value, plusminus);
-          newenddate = yearcalc(end.value, plusminus);
+          start.value = yearcalc(start.value, plusminus);
+          end.value = yearcalc(end.value, plusminus);
         }
-        start.value=newstartdate.toLocaleDateString();
-        end.value=newenddate.toLocaleDateString(); 
+ 
       }
-
-      
-      
-      /*function earlier(period) {
-        var start = document.getElementById("start");
-        var end = document.getElementById("end");
-        
-          var currentvalue = start.value;
-          var currentvalueformatted = currentvalue.substring(6) + "/" + currentvalue.substring(3,5) + "/" + currentvalue.substring(0,2);
-          const currentvaluedt = Date.parse(currentvalueformatted);
-          alert(currentvaluedt);
-          //currentvaluedt.setDate(currentvaluedt.getDate());
-          alert(currentvaluedt);
-          //start.value = newvalue;
-          //end.value = newvalue;
-          }
-
-      } */
-
-
 
     </script>
     {% include 'navbar.html' %}
     
     <img class="noprint" mt-2  img-fluid max-width: 100%  height: auto" src="https://porlock-garage-admin.timbacct.repl.co/static/GarageBanner.png" alt="Central Garage Banner">
   
-
-    Date {{datelastupdated}} Date
     <table class="table">
       <tr>
         <th>Search Criteria</th>
