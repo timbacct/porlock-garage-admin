@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from logic import *
 from buttonhandlers import *
 from database import getInvoiceHeaders, getInvoiceHeader, getInvoiceHeadersTotal, getParts, getWork, getLastUpdate
@@ -34,6 +34,16 @@ INVOICEHEADER = [{
 #def homepage():
 #  return render_template('home.html')
 
+# Route for handling the login page logic
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  error = None
+  if request.method == 'POST':
+    if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+      error = 'Invalid Credentials.  Please try again.'
+    else:
+      return redirect(url_for('homepage'))
+  return render_template('login.html', error=error)
 
 @app.route("/", methods=['GET'])
 def homepage():

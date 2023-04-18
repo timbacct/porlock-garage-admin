@@ -1,0 +1,24 @@
+      th {
+         style="white-space:nowrap";
+      }
+      #banner {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+      }
+      body {
+      	margin: auto;
+            }
+      button {
+        class="btn btn-outline-success";
+      }
+      
+      @media print {
+        
+        .noprint { display:none; }
+        
+        @page {size: A4 landscape; }
+
+        transform: scale(1.2)
+      }
+      

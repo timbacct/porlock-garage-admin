@@ -1,0 +1,106 @@
+      th {
+         style="white-space:nowrap";
+      }
+      #banner {
+        height: 180px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      body {
+      	width: 1150px;
+      	margin: auto;
+            }
+      button {
+        class="btn btn-outline-success";
+      }
+      @media print {
+        .noprint{
+          display:none;
+        }
+        @page {
+          size: A4 landscape;  
+          margin: 0;
+        } //margin 0 gets rid of headers and footers
+      }
+
+      p.p1 {margin: 0.0px 4.0px 0.0px 4.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p2 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 18.7px 'Arial Black'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p3 {margin: 0.0px 0.0px 0.0px 5.0px; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 15.0px}
+      p.p4 {margin: 0.0px 0.0px 0.0px 5.0px; font: 14.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p5 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 18.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 22.0px}
+      p.p6 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 15.0px}
+      p.p7 {margin: 0.0px 0.0px 0.0px 5.0px; font: 14.7px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); min-height: 16.0px}
+      p.p8 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: left; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      p.p9 {margin: 0.0px 0.0px 0.0px 5.0px; text-align: center; font: 13.3px Arial; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+      span.s1 {font-kerning: none}
+      table.t1 {width: 1389.3px; border-collapse: collapse; table-layout: fixed}
+      td.td1 {width: 195.2px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td2 {width: 300.0px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td3 {width: 92.0px}
+      td.td4 {width: 92.0px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td5 {width: 100.3px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td5a {width: 200.3px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td6 {width: 117.3px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td7 {width: 122.0px; border-style: solid; border-width: 0.5px 0.5px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td8 {width: 91.5px}
+      td.td9 {width: 158.2px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td10 {width: 125.3px}
+      td.td11 {width: 98.7px}
+      td.td12 {width: 337.3px}
+      td.td13 {width: 117.3px}
+      td.td14 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td15 {width: 183.5px}
+      td.td16 {width: 158.2px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td17 {width: 125.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td18 {width: 98.7px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td181 {width: 98.7px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td19 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td19a {width: 92.0px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td20 {width: 337.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td21 {width: 117.3px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td22 {width: 92.0px; border-style: solid; border-width: 0.0px 0.5px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td23 {width: 158.7px}
+      td.td24 {width: 368.0px; border-style: solid; border-width: 0.5px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td25 {width: 158.2px; border-style: solid; border-width: 1.0px 0.5px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td26 {width: 124.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td27 {width: 98.2px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td28 {width: 91.5px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td29 {width: 336.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td30 {width: 92.0px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td31 {width: 117.3px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td32 {width: 91.0px; border-style: solid; border-width: 1.0px 1.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td33 {width: 275.5px}
+      td.td34 {width: 158.2px; border-style: solid; border-width: 0.0px 0.5px 0.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td35 {width: 223.5px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td36 {width: 336.8px}
+      td.td37 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td38 {width: 223.5px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td39 {width: 124.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td40 {width: 428.8px}
+      td.td41 {width: 546.2px}
+      td.td42 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td43 {width: 92.0px; border-style: solid; border-width: 0.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td44 {width: 117.3px; border-style: solid; border-width: 0.5px 0.0px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td45 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td46 {width: 91.0px; border-style: solid; border-width: 0.5px 1.0px 0.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td47 {width: 91.5px; border-style: solid; border-width: 0.5px 1.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td48 {width: 91.5px; border-style: solid; border-width: 0.0px 0.0px 0.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td49 {width: 336.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td50 {width: 91.5px; border-style: solid; border-width: 1.0px 0.5px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td51 {width: 116.8px; border-style: solid; border-width: 1.0px 0.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td52 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.5px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td53 {width: 91.5px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td54 {width: 116.8px; border-style: solid; border-width: 0.0px 0.5px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td55 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 0.5px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td56 {width: 336.8px; border-style: solid; border-width: 0.0px 0.0px 0.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td57 {width: 184.0px}
+      td.td58 {width: 158.2px; border-style: solid; border-width: 0.0px 0.5px 1.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td59 {width: 124.8px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td60 {width: 98.2px; border-style: solid; border-width: 0.5px 0.0px 1.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td61 {width: 91.0px; border-style: solid; border-width: 0.5px 0.0px 1.0px 0.5px; border-color: #000000 #000000 #000000 #000000}
+      td.td62 {width: 336.8px; border-style: solid; border-width: 0.5px 0.5px 1.0px 1.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td63 {width: 91.5px; border-style: solid; border-width: 0.0px 0.5px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td64 {width: 116.8px; border-style: solid; border-width: 0.0px 0.5px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td65 {width: 91.0px; border-style: solid; border-width: 0.0px 1.0px 1.0px 0.0px; border-color: #000000 #000000 #000000 #000000}
+      td.td66 {width: 276.0px}

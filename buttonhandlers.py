@@ -1,4 +1,5 @@
 from logic import viewInvoiceHeaders
+from loadinvoicesfromsubdirectory import loadInvoices
 
 def openSpreadsheet():
     selectedItem = tree.selection()[0]
@@ -70,10 +71,11 @@ def enterPressed(event):
     viewInvoiceHeaders()
 
 def updateDatabase():
-    LI.loadInvoices(machineSensitiveRoot)
-    getDateLastUpdated()
-    print("Updated")
-    viewInvoiceHeaders()
+  directoryRoot = "???????????????"
+  loadInvoices(directoryRoot)
+  #getLastUpdate()
+  #print("Updated")
+  #viewInvoiceHeaders()
 
 def toggleDateSlider():
     
