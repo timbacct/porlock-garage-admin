@@ -1,5 +1,6 @@
 from logic import viewInvoiceHeaders
 from loadinvoicesfromsubdirectory import loadInvoices
+import os
 
 def openSpreadsheet():
     selectedItem = tree.selection()[0]
@@ -25,15 +26,7 @@ def deleteSpreadsheet():
     except Exception as e:
         print(repr(e))
         print("Deleting spreadsheet from directory failed")
-
-def openDetailWindow(Event):
-    selectedItem = tree.selection()[0]
-    selection=tree.item(selectedItem)['values'][10]
-    print(str(selection))
-    invoice=DisplayingInvoice.windows()
-    invoice.showDetails(selection)
    
-
 def deleteSelectedInvoice():
     selectedItem = tree.selection()[0]
     selection=tree.item(selectedItem)['values'][10]
@@ -45,22 +38,6 @@ def deleteSelectedInvoice():
         print("Deleting invoice from directory failed")
     viewInvoiceHeaders()
 
-
-
-def clearFilters(data):
-    data['customerName']=""
-    data['registrationNumber']=""
-    data['dateIn']=""
-    data['makeModel']=""
-    data['phoneNumber']=""
-    data['dateStart']=""
-    data['dateStart']=""
-    data['dateEnd']=""
-    data['dateEnd']=""
-    #timeScope.set(1)
-    #buttonDate.config(text='In')
-    data['estimates']=0
-    data['invoices']=1
 
 def openNewInvoice():
     invoiceType=cmbInvoiceType.get()
@@ -77,118 +54,5 @@ def updateDatabase():
   #print("Updated")
   #viewInvoiceHeaders()
 
-def toggleDateSlider():
-    
-    if buttonDate.config('text')[-1] == 'In':
-        buttonDate.config(text='Paid')
-    else:
-        buttonDate.config(text='In')
         
 
-def dayEarlier():
-    
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(days=-1)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(days=-1)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-
-def dayLater():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(days=1)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(days=1)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-def weekEarlier():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(days=-7)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(days=-7)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-def weekLater():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(days=7)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(days=7)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-
-def monthEarlier():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(months=-7)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(months=-7)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-
-def monthLater():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(months=7)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(months=7)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-
-def yearEarlier():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(years=-7)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(years=-7)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))
-
-def yearLater():
-
-    newStartDate=datetime.strptime(dateStart.get(), "%d/%m/%Y") + timedelta(years=7)
-    dateStart.delete(0,END)
-    dateStart.insert(0,datetime.strftime(newStartDate, "%d/%m/%Y"))
-    
-    print(datetime.strptime(dateEnd.get(), "%d/%m/%Y"))
-    newEndDate=datetime.strptime(dateEnd.get(), "%d/%m/%Y") + timedelta(years=7)
-    print(newEndDate)
-    
-    dateEnd.delete(0,END)
-    dateEnd.insert(0,datetime.strftime(newEndDate , "%d/%m/%Y"))

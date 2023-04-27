@@ -2,10 +2,8 @@
 
 import glob
 from loadinvoicespreadsheetstotable import LoadInvoiceToDB
-from loadinvoicespreadsheetstotable import *
 from database import checkFileLoaded, getFileList
 import os
-import platform
 
 paths = ("Documents/Aa Invoices/A-D/*.xls*",
          "Documents/Aa Invoices/E-H/*.xls*",

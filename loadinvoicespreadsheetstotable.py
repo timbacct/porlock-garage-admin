@@ -258,12 +258,7 @@ def LoadInvoiceToDB(machineSensitiveRoot, pathName, fileName, fileSize):
         summaryTotal = cleanCellZero(summaryTotal)
            
 
-        invoiceHeaderID = saveInvoiceHeaderToDB(name, invoiceNo, telephoneNo, dateIn, dateInJulian, makeModel, regNo, mileage,
-                paidDate, paidDateJulian, paymentType, cashier, garageOwner, pathName, fileName, fileSize,
-                 MOTValue, listPartsTotal, listLabourTotal, summaryLabour, summaryLabourVAT, summaryLabourTotal, summaryMOT,
-                summaryMOTVAT, summaryMOTTotal, summaryParts, summaryPartsVAT, summaryPartsTotal, summaryPrice, summaryVAT, summaryTotal)
-
-
+        invoiceHeaderID = saveInvoiceHeaderToDB(name, invoiceNo, telephoneNo, dateIn, dateInJulian, makeModel, regNo, mileage, paidDate, paidDateJulian, paymentType, cashier, garageOwner, pathName, fileName, fileSize,  MOTValue, listPartsTotal, listLabourTotal, summaryLabour, summaryLabourVAT, summaryLabourTotal, summaryMOT, summaryMOTVAT, summaryMOTTotal, summaryParts, summaryPartsVAT, summaryPartsTotal, summaryPrice, summaryVAT, summaryTotal)
 
         #print(invoiceHeaderID)
         savePartsWorkToDB(part, work, invoiceHeaderID)
