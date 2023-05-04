@@ -9,12 +9,13 @@
     <link href="static/home.css" rel="stylesheet" type="text/css" />
 
     <script src="static/home.js" type="text/javascript"></script>
-
+    <script src="static/common.js" type="text/javascript"></script>
+    
   </head>
   <body>
 
     {% include 'header.html' %}
-  
+    {{message}}
     <table class="table">
       <tr>
         <th>Search Criteria</th>
@@ -140,7 +141,7 @@
                 </td>
                 <td style="text-align:center">
                   <input type="button" id="datetype" name="datetype" value="{% if data['datetypevalue']=="" or data['datetypevalue']=="In":  %}In{% else %}Paid{% endif %}" class="btn btn-outline-dark" onclick="toggleDateType()">
-                  <input type="hidden" id="datetypevalue" name="datetypevalue" value="{% if data['datetypevalue']=="":  %}In{% else %}Paid{% endif %}">
+                  <input type="hidden" id="datetypevalue" name="datetypevalue" value="{% if data['datetypevalue']=="" or data['datetypevalue']=="In":  %}In{% else %}Paid{% endif %}">
                 </td>
               </tr>
               <tr>
@@ -149,7 +150,7 @@
                   <label class="col-form-label-sm" for="estimates"> Estimates</label>
                 </td>
                 <td  style="text-align:center" class="justify-content-between">
-                  <input class="form-check-input" type="checkbox" id="invoices" name="invoices" value="invoices" {% if data['invoices']=="invoices":  %} checked="checked" {% endif %}>
+                  <input class="form-check-input" type="checkbox" id="invoices" name="invoices" value="invoices" {% if data['invoices'] != "invoices" and data["estimates"] != "estimates"%} checked="checked"  {% endif %} {% if data['invoices']=="invoices":  %} checked="checked" {% endif %}>
                   <label class="col-form-label-sm" for="invoices"> Invoices</label>
                 </td>
               </tr>
@@ -165,7 +166,7 @@
               </tr>
               <tr>
                 <td style="text-align: center">
-                  <input type="submit" class="btn btn-outline-primary btn-xs"" value="Display Data">
+                  <input type="submit" class="btn btn-outline-primary btn-xs" value="Display Data">
                 </td>
                 <td style="text-align: center">
                   <button type="button" class="btn btn-outline-primary btn-xs" onclick="clearFilters()">Clear</button>
@@ -214,24 +215,26 @@
               {% for invoice in invoiceheaders %}  
                 {% include 'invoicelist.html' %}
               {% endfor%}
-            <tr style="border-top:  solid;">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              {% for total in totals %}
-              <td style="text-align:right" class="h6">
-                {{total['TotalExVAT']}}
-              </td>
-              <td style="text-align:right" class="h6">
-                {{total['TotalIncVAT']}}
-              </td>
-              {% endfor %}
-            </tr>
+            <tfoot>
+              <tr style="border-top:  solid;">
+                <td></td>  <!-- //placeholders to put the totals under the correct column -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                {% for total in totals %}
+                <td style="text-align:right" class="h6">
+                  {{total['TotalExVAT']}}
+                </td>
+                <td style="text-align:right" class="h6">
+                  {{total['TotalIncVAT']}}
+                </td>
+                {% endfor %}
+              </tr>
+            </tfoot>
           </table>
         </td>
       </tr>

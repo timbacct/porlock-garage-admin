@@ -44,7 +44,7 @@ def buildSearchString(data):
         searchString = addSearchCriterionToString(searchString, "PhoneNumber", str(phoneNumberVal))
     #obsolete searchString = addDateRangeToString(data, searchString)
     searchString = addDateAndTypeRangeToString(data, searchString)
-    #searchString = addCheckbuttonCriteriaToString(data, searchString)
+    searchString = addCheckbuttonCriteriaToString(data, searchString)
     #print(searchString)
     return searchString
 
@@ -58,15 +58,26 @@ def addSearchCriterionToString(searchString, column, value):
     return searchString
 
 def addCheckbuttonCriteriaToString(data, searchString):
-    flgEstimateValue=flgEstimates.get()
-    flgInvoicesValue=flgInvoices.get()
-    if flgEstimateValue==0 and flgInvoicesValue==0:
-        flagString = "InvoiceNumber = 'asdfasdfasdfsdfsafaf;"
-    if flgEstimateValue==0 and flgInvoicesValue==1:
+    #print("here c1")
+    try:
+      flgEstimateValue=data["estimates"]
+    except:
+      flgEstimateValue=""
+    #print("flgEstimateValue")
+    #print(flgEstimateValue)
+    try:
+      flgInvoicesValue=data["invoices"]
+    except:
+      flgInvoicesValue=""
+    #print("flgInvoicesValue")
+    #print(flgInvoicesValue)
+    if flgEstimateValue=="" and flgInvoicesValue=="":
+        flagString = "InvoiceNumber = 'asdfasdfasdfsdfsafaf"
+    if flgEstimateValue=="" and flgInvoicesValue=="invoices":
         flagString = "InvoiceNumber NOT LIKE 'Estimate'"
-    if flgEstimateValue==1 and flgInvoicesValue==0:
+    if flgEstimateValue=="estimates" and flgInvoicesValue=="":
         flagString = "InvoiceNumber = 'Estimate'"
-    if flgEstimateValue==1 and flgInvoicesValue==1:
+    if flgEstimateValue=="estimates" and flgInvoicesValue=="invoices":
         flagString = ""
     if flagString=="":
         pass
@@ -96,7 +107,7 @@ def getStartAndEndOfPeriod(period):
         endOfPeriod = "31/12/" + str(dt.year)
         startOfPeriod=datetime.strptime(startOfPeriod, ("%d/%m/%Y"))
         endOfPeriod=datetime.strptime(endOfPeriod, ("%d/%m/%Y"))
-    print(str(startOfPeriod) + str(endOfPeriod))
+    #print(str(startOfPeriod) + str(endOfPeriod))
     return startOfPeriod, endOfPeriod
 
 def addDateAndTypeRangeToString(data, searchString):
@@ -195,7 +206,7 @@ def addDateRangeToString(data, searchString):
             searchString = "WHERE " + dateString
         else:
             searchString = searchString + " AND " + dateString
-    print(searchString)
+    #print(searchString)
     return searchString
 
 

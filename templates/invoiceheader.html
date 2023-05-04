@@ -275,7 +275,7 @@
         </tr>
         <tr>
           <td valign="bottom" class="td16">
-            <p class="p4"><span class="s1"><i>{% if data[MakeModel2] != Null %} {{data["MakeModel2"]}} {% endif %}</i></span></p>
+            <p class="p4"><span class="s1"><i>{{data["MakeModel2"]}}</i></span></p>
           </td>
           <td valign="bottom" class="td17">
             <p class="p4"><span class="s1"><i> </i></span></p>
@@ -387,13 +387,13 @@
         
         <tr>
           <td valign="bottom" class="td34">
-            <p class="p1"><span class="s1"> </span></p>
+            <p class="p1"><span class="s1">{{parts[21]['PartsCode']}} </span></p>
           </td>
           <td valign="bottom" class="td35">
-            <p class="p1"><span class="s1"> </span></p>
+            <p class="p1"><span class="s1">{{parts[21]['PartsDescription']}} </span></p>
           </td>
           <td valign="bottom" class="td35">
-            <p class="p1"><span class="s1"> </span></p>
+            <p class="p1"><span class="s1">{% if parts[21]['PartsPrice'] != "" and parts[21]['PartsPrice'] != "Price" %} {{"£%.2f"|format(parts[21]['PartsPrice']|float)}} {% endif %} </span></p>
           </td>
           <td valign="bottom" class="td22">
             <p class="p1"><span class="s1"> </span></p>

@@ -1,32 +1,3 @@
-function clearFilters(){
-  document.getElementById("customername").value = "";
-  document.getElementById("registrationnumber").value = "";
-  document.getElementById("datein").value = "";
-  document.getElementById("makemodel").value = "";
-  document.getElementById("phonenumber").value = "";
-  document.getElementById("period").value = "all";
-  document.getElementById("estimates").value = "";
-  document.getElementById("invoices").value = "invoices";
-  
-}
-function showAlert(alertText){
-  alert(alertText);
-}
-
-function toggleDateType(){
-  var elem = document.getElementById("datetype");
-  var elemval = document.getElementById("datetypevalue");
- 
-  if (elem.value=="In") {
-    elem.value="Paid";
-    elemval.value="Paid";
-  } else {
-    elem.value="In";
-    elemval.value="In";
-  }
-  
-}
-
 window.onload = function() {
   var all = document.getElementById('all');
   var today = document.getElementById('today');
@@ -51,6 +22,34 @@ window.onload = function() {
   //alert("got here");
   //sumTableExVAT();
   //sumTableIncVAT();
+}
+
+function clearFilters(){
+  document.getElementById("customername").value = "";
+  document.getElementById("registrationnumber").value = "";
+  document.getElementById("datein").value = "";
+  document.getElementById("makemodel").value = "";
+  document.getElementById("phonenumber").value = "";
+  document.getElementById("period").value = "all";
+  document.getElementById("estimates").value = "";
+  document.getElementById("invoices").value = "invoices"; 
+}
+
+function showAlert(alertText){
+  alert(alertText);
+}
+
+function toggleDateType(){
+  var elem = document.getElementById("datetype");
+  var elemval = document.getElementById("datetypevalue");
+ 
+  if (elem.value=="In") {
+    elem.value="Paid";
+    elemval.value="Paid";
+  } else {
+    elem.value="In";
+    elemval.value="In";
+  } 
 }
 
 function allhandler() {

@@ -45,11 +45,14 @@ def getInvoiceHeadersTotal(searchString):
   #print(searchString)
   if searchString=="":
     searchString=""
+  #print("SELECT CONCAT('£',FORMAT(SUM(SummaryPrice),2,'en_US')) AS TotalExVAT, CONCAT('£',FORMAT(SUM(SummaryTotal),2,'en_US')) AS TotalIncVAT FROM InvoiceHeader " + str(searchString))
+        
   with engine.connect() as conn:
     result = conn.execute(
       text(
         "SELECT CONCAT('£',FORMAT(SUM(SummaryPrice),2,'en_US')) AS TotalExVAT, CONCAT('£',FORMAT(SUM(SummaryTotal),2,'en_US')) AS TotalIncVAT FROM InvoiceHeader "
         + str(searchString)))
+    #print("got to end of getinvoiceheaders")
     return result
 
 def getLastUpdate():
@@ -60,10 +63,10 @@ def getLastUpdate():
 
     for row in result:
       datelastupdated = row[1]
-      print(datelastupdated)
+      #print(datelastupdated)
 
       datelastupdated = datelastupdated.strftime('%d/%m/%Y')
-      print(datelastupdated)
+      #print(datelastupdated)
   return datelastupdated
 
 
@@ -231,3 +234,43 @@ def checkFileLoaded(machineSensitiveRoot, pathName, fileName, fileSize):
       else:
         # file has not been imported
         result = False
+
+def getBookings(Date):
+  with engine.connect() as conn:
+    result=conn.execute(text("SELECT Time, Duration, Name, Make, Model, Registration, Work, Notes FROM vwbookings WHERE Date='" + Date + "'"))
+  return result
+
+def getBooking(ID):
+  with engine.connect() as conn:
+    result=conn.execute(text("SELECT Time, Duration, Name, Make, Model, Registration, Work, Notes FROM vwbookings WHERE ID= " + ID))
+  return result
+
+def saveBookingToDB(saveData):
+  with engine.connect() as conn:
+    conn.execute(text("INSERT INTO Customer (Name, PhoneNumber) VALUES ('" + saveData["customername"] + "', '" + saveData["phone"] + "')" ))
+    conn.commit()
+    result=conn.execute(text("SELECT MAX(ID) FROM Customer"))
+    for row in result:
+      customerID = row[0]
+      print(customerID)
+      
+    conn.execute(text("INSERT INTO Vehicle (Make, Model, Registration, CustomerID) VALUES ('" + saveData["make"] + "', '" + saveData["model"] + "', '" + saveData["registration"] + "', " + str(customerID) + ")" ))
+    conn.commit()
+    result=conn.execute(text("SELECT MAX(ID) FROM Vehicle"))
+    for row in result:
+      vehicleID = row[0]
+      
+    conn.execute(text("INSERT INTO Job (Description, VehicleID, CustomerID) VALUES('" + saveData["work"] + "', " + str(vehicleID) + ", " + str(customerID) + ")"))
+    conn.commit()
+    result=conn.execute(text("SELECT MAX(ID) FROM Vehicle"))
+    for row in result:
+      jobID = row[0]
+      
+    conn.execute(text("INSERT INTO Booking (Date, Time, Duration, Work, Notes, JobID, StatusID) VALUES('" + saveData["date"] + "', '" + saveData["time"] + "', '" + saveData["duration"] + "', '" + saveData["work"] + "', '" + saveData["notes"] + "', " + str(jobID) + ", " + str(saveData["statusID"]) + ")" ))
+    conn.commit()
+    result=conn.execute(text("SELECT MAX(ID) FROM Vehicle"))
+    for row in result:
+      bookingID = row[0]
+
+    
+  return bookingID
